@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 // import { useDispatch, useSelector } from "react-redux";
 // import { Routes, Route, useLocation } from "react-router-dom";
-import { Track, Artist } from "../../ints/ints";
+import { TrackInt, ArtistInt } from "../../ints/ints";
 
 // import { setStoreArtists } from "../../store/artistSlice";
 // import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
@@ -32,8 +32,8 @@ const App = () => {
   // const dispatch = useDispatch();
   // const { mobileView } = useSelector((state) => state.mobileView);
   const [loading, setLoading] = useState<boolean>(true);
-  const [artists, setArtists] = useState<Artist[]>([]);
-  const [tracks, setTracks] = useState<Track[]>([]);
+  const [artists, setArtists] = useState<ArtistInt[]>([]);
+  const [tracks, setTracks] = useState<TrackInt[]>([]);
 
   // check for mobile view - send state up to redux store
   // to be used by other components like waveform
@@ -69,7 +69,7 @@ const App = () => {
       });
   };
 
-  const formatDates = (tracks: Track[]) => {
+  const formatDates = (tracks: TrackInt[]) => {
     const newDateTracks = tracks.map((track) => {
       const dateObject = new Date(track.upload_date);
       const formattedDate = dateObject.toISOString().split("T")[0];

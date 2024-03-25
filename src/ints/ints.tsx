@@ -1,26 +1,26 @@
-export interface Tag {
+export interface TagInt {
   title: string;
 }
 
-export interface Artist {
+export interface ArtistInt {
   name: string;
   profile_photo: string;
   bio: string;
 }
 
-export interface SocialMedia {
-  artist: Artist;
+export interface SocialMediaInt {
+  artist: ArtistInt;
   platform: string;
   link: string;
 }
 
-export interface Track {
+export interface TrackInt {
   title: string;
-  artists: Artist[];
+  artists: ArtistInt[];
   description: string;
   file: string;
   track_photo: string;
-  tags: Tag[];
+  tags: TagInt[];
   featured: boolean;
   upload_date: string;
 }
