@@ -1,0 +1,14 @@
+.loadingMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: black;
+}
+
+.loadingTitle {
+  font-family: Coolvetica;
+  color: white;
+}
