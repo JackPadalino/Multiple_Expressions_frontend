@@ -1,0 +1,43 @@
+@media only screen and (max-width: 600px) {
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+}
+
+@media only screen and (min-width: 1280px) {
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  /* default background color for all components */
+  background-color: #262626;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+input {
+  font-family: "Poppins", "sans-serif";
+  color: white;
+}
+
+@font-face {
+  font-family: "Quantify";
+  src: local("Quantify"),
+    url("../../assets/fonts/Quantify.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Coolvetica";
+  src: local("Coolvetica"),
+    url("../../assets/fonts/coolvetica.otf") format("opentype");
+}
