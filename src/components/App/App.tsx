@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import { useDispatch, useSelector } from "react-redux";
-// import { Routes, Route, useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setStoreMobileView } from "../../store/mobileViewSlice";
+import { setStoreArtists } from "../../store/artistSlice";
+import { setStoreTracks } from "../../store/musicSlice";
 import { TrackInt, ArtistInt } from "../../ints/ints";
-
-// import { setStoreArtists } from "../../store/artistSlice";
-// import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
-// import { setMobileView } from "../../store/mobileViewSlice";
-
 import {
   // Home,
   // NotFound,
@@ -23,23 +20,21 @@ import {
   // Admin,
   // Artist,
 } from "../index";
-
 import { Box } from "@mui/material";
-
 import "./app.css";
 
 const App = () => {
-  // const dispatch = useDispatch();
-  // const { mobileView } = useSelector((state) => state.mobileView);
+  const dispatch = useAppDispatch();
+  const mobileView = useAppSelector(
+    (state) => state.mobileView.storeMobileView
+  );
   const [loading, setLoading] = useState<boolean>(true);
-  const [artists, setArtists] = useState<ArtistInt[]>([]);
-  const [tracks, setTracks] = useState<TrackInt[]>([]);
 
   // check for mobile view - send state up to redux store
   // to be used by other components like waveform
   const checkMobileView = () => {
     const mediaQuery = window.matchMedia("(max-width: 1280px)");
-    // dispatch(setMobileView(mediaQuery.matches));
+    dispatch(setStoreMobileView(mediaQuery.matches));
   };
 
   const fetchData = () => {
@@ -52,14 +47,12 @@ const App = () => {
     axios
       .get(`${url}/api/music/artists/all`)
       .then((response) => {
-        // dispatch(setStoreArtists(artistData.data));
-        setArtists(response.data);
+        dispatch(setStoreArtists(response.data));
         return axios.get(`${url}/api/music/tracks/all`);
       })
       .then((response) => {
         const updatedTracks = formatDates(response.data);
-        // dispatch(setStoreTracks(updatedTracks));
-        setTracks(updatedTracks);
+        dispatch(setStoreTracks(updatedTracks));
         setLoading(false);
         return axios.get(`${url}/api/music/videos/all`);
       })
