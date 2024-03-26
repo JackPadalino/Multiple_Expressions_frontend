@@ -2,12 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./index";
 import { ArtistInt } from "../ints/ints";
 
-// Define a type for the slice state
 interface StoreArtistsState {
   storeArtists: ArtistInt[];
 }
 
-// Define the initial state using that type
 const initialState: StoreArtistsState = {
   storeArtists: [],
 };
@@ -17,15 +15,15 @@ export const artistSlice = createSlice({
   initialState,
   reducers: {
     setStoreArtists: (state, action: PayloadAction<ArtistInt[]>) => {
-      state.storeArtists = action.payload; // Directly assigning, consider immutability
+      state.storeArtists = action.payload;
     },
   },
 });
 
 export const { setStoreArtists } = artistSlice.actions;
 
-const artistReducer = artistSlice.reducer;
-export default artistReducer;
-
+// selectors to be used to pull data down from redux store
 export const selectStoreArtists = (state: RootState) =>
-  state.artist.storeArtists;
+  state.artists.storeArtists;
+
+export default artistSlice.reducer;

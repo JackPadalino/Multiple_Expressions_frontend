@@ -1,23 +1,46 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "./index";
+import { TrackInt } from "../ints/ints";
 
-const initialState = {
-  waveformTrack: {},
-  displayWaveform: false,
+interface StoreWaveformState {
+  storeWaveformTrack: TrackInt;
+  storeDisplayWaveform: boolean;
+}
+
+const initialState: StoreWaveformState = {
+  storeWaveformTrack: {
+    title: "",
+    artists: [],
+    description: "",
+    file: "",
+    track_photo: "",
+    tags: [],
+    featured: false,
+    upload_date: "",
+  },
+  storeDisplayWaveform: false,
 };
 
 export const waveformSlice = createSlice({
   name: "waveform",
   initialState,
   reducers: {
-    setDisplayWaveform: (state, action) => {
-      state.displayWaveform = action.payload;
+    setStoreDisplayWaveform: (state, action: PayloadAction<boolean>) => {
+      state.storeDisplayWaveform = action.payload;
     },
-    setWaveformTrack: (state, action) => {
-      state.waveformTrack = action.payload;
+    setStoreWaveformTrack: (state, action: PayloadAction<TrackInt>) => {
+      state.storeWaveformTrack = action.payload;
     },
   },
 });
 
-export const { setDisplayWaveform, setWaveformTrack } = waveformSlice.actions;
+export const { setStoreDisplayWaveform, setStoreWaveformTrack } =
+  waveformSlice.actions;
+
+// selectors to be used to pull data down from redux store
+export const selectStoreWaveformTrack = (state: RootState) =>
+  state.waveform.storeWaveformTrack;
+export const selectStoreDisplayWaveform = (state: RootState) =>
+  state.waveform.storeDisplayWaveform;
 
 export default waveformSlice.reducer;

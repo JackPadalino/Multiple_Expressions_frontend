@@ -1,23 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "./index";
+import { TrackInt } from "../ints/ints";
 
-const initialState = {
+interface StoreTracksState {
+  storeTracks: TrackInt[];
+}
+
+const initialState: StoreTracksState = {
   storeTracks: [],
-  storeVideos: [],
 };
 
 export const musicSlice = createSlice({
   name: "music",
   initialState,
   reducers: {
-    setStoreTracks: (state, action) => {
+    setStoreTracks: (state, action: PayloadAction<TrackInt[]>) => {
       state.storeTracks = action.payload;
-    },
-    setStoreVideos: (state, action) => {
-      state.storeVideos = action.payload;
     },
   },
 });
 
-export const { setStoreTracks, setStoreVideos } = musicSlice.actions;
+export const { setStoreTracks } = musicSlice.actions;
+
+// selectors to be used to pull data down from redux store
+export const selectStoreTracks = (state: RootState) => state.music.storeTracks;
 
 export default musicSlice.reducer;
