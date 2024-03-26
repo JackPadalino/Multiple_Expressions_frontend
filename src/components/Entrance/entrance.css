@@ -1,0 +1,48 @@
+@media only screen and (max-width: 600px) {
+  .entranceImg {
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .entranceImg {
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .entranceImg {
+    width: 600px;
+  }
+}
+
+.entranceMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  gap: 10px;
+  height: 100vh;
+  background-color: black;
+}
+
+.imgLink {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entranceImg {
+  cursor: pointer;
+  height: auto;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.entranceImg.imgLoaded {
+  opacity: 1;
+}

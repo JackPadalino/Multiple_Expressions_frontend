@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setStoreMobileView } from "../../store/mobileViewSlice";
 import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks } from "../../store/musicSlice";
-import { TrackInt, ArtistInt } from "../../ints/ints";
+import { TrackInt } from "../../ints/ints";
 import {
   // Home,
   // NotFound,
   Loading,
-  // Entrance,
+  Entrance,
   // Track,
   // Visual,
   // Auditory,
@@ -100,17 +101,17 @@ const App = () => {
   return (
     <Box className="appContainer">
       {/* {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />} */}
-      {/* <Routes> */}
-      {/* <Route path="/" element={<Entrance />} /> */}
-      {/* <Route path="/home" element={<Home />} /> */}
-      {/* <Route path="/visual" element={<Visual />} /> */}
-      {/* <Route path="/auditory" element={<Auditory />} /> */}
-      {/* <Route path="/live" element={<Live />} /> */}
-      {/* <Route path="/admin" element={<Admin />} /> */}
-      {/* <Route path="/artist/:id" element={<Artist />} /> */}
-      {/* <Route path="/track/:id" element={<Track />} /> */}
-      {/* <Route path="/*" element={<NotFound />} /> */}
-      {/* </Routes> */}
+      <Routes>
+        <Route path="/" element={<Entrance />} />
+        {/* <Route path="/home" element={<Home />} /> */}
+        {/* <Route path="/visual" element={<Visual />} /> */}
+        {/* <Route path="/auditory" element={<Auditory />} /> */}
+        {/* <Route path="/live" element={<Live />} /> */}
+        {/* <Route path="/admin" element={<Admin />} /> */}
+        {/* <Route path="/artist/:id" element={<Artist />} /> */}
+        {/* <Route path="/track/:id" element={<Track />} /> */}
+        {/* <Route path="/*" element={<NotFound />} /> */}
+      </Routes>
       {/* {mobileView ? <MobileWaveform /> : <Waveform />} */}
     </Box>
   );
