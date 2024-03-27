@@ -1,0 +1,200 @@
+@media only screen and (max-width: 600px) {
+  .homeDesc {
+    width: 95%;
+  }
+
+  .homeInvitation {
+    width: 95%;
+  }
+
+  .swiper {
+    width: 95%;
+    height: auto;
+  }
+
+  .swiper-button-next::after {
+    display: none;
+  }
+
+  .swiper-button-prev::after {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  /* .homeDesc {
+      width: 75%;
+    } */
+
+  .homeInvitation {
+    width: 75%;
+  }
+
+  .swiper {
+    width: 50%;
+    height: auto;
+  }
+
+  .swiper-button-next::after {
+    display: none;
+  }
+
+  .swiper-button-prev::after {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .homeTrackImg {
+    width: 100%;
+    height: auto;
+  }
+
+  .homeInvitation {
+    width: 33%;
+  }
+
+  .swiper {
+    width: 33%;
+    height: auto;
+  }
+
+  .swiper-button-next::after {
+    color: rgb(234, 162, 42);
+  }
+
+  .swiper-button-prev::after {
+    color: rgb(234, 162, 42);
+  }
+}
+
+.homeMainContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
+}
+
+.homeFeaturedTrackDiv {
+  display: flex;
+  /* flex-direction: column;
+    align-items: center; */
+  position: relative;
+}
+
+.homeFeaturedTrackDiv > :nth-child(2) {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.homeTrackTitlePlayDiv {
+  display: flex;
+  align-items: center;
+}
+
+.homeTrackTitle {
+  font-size: 30px;
+  font-family: Coolvetica;
+}
+
+.homeArtistInfoDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeArtistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.homeArtistLink:hover {
+  text-decoration: underline;
+}
+
+.homeTagsDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.homeTag {
+  font-size: 12px;
+}
+
+.homeIntroDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.homeTitle {
+  font-family: Quantify;
+}
+
+.homeDesc {
+  text-align: center;
+  color: rgb(234, 162, 42);
+}
+
+.homeSocialsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.homeInvitation {
+  text-align: center;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.homeEmail {
+  color: rgb(234, 162, 42);
+}
+
+/*~~~~~Swiper JS styling~~~~~*/
+/* 
+  Swiper JS comes with built-in styles
+  like swiper,swiper-slide, and swiper-slide img
+  these class names are not explicitly set in the .jsx
+  component 
+  */
+
+.homeTrackImg {
+  width: 100%;
+  height: auto;
+}
+
+.swiper-slide {
+  display: flex;
+  position: relative;
+}
+
+.swiper-slide > :nth-child(2) {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* 
+  using "unset" to removev the default positioning of
+  the pagination div set by Swiper JS
+   */
+.swiper-pagination {
+  position: unset;
+}
+
+.swiper-pagination-bullet {
+  background: white;
+}
+
+.swiper-pagination-bullet-active {
+  background: white;
+}

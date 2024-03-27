@@ -7,7 +7,7 @@ import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks } from "../../store/musicSlice";
 import { TrackInt } from "../../ints/ints";
 import {
-  // Home,
+  Home,
   // NotFound,
   Loading,
   Entrance,
@@ -103,7 +103,7 @@ const App = () => {
       {/* {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />} */}
       <Routes>
         <Route path="/" element={<Entrance />} />
-        {/* <Route path="/home" element={<Home />} /> */}
+        <Route path="/home" element={<Home />} />
         {/* <Route path="/visual" element={<Visual />} /> */}
         {/* <Route path="/auditory" element={<Auditory />} /> */}
         {/* <Route path="/live" element={<Live />} /> */}
