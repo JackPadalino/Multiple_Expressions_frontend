@@ -17,7 +17,7 @@ import {
   // Live,
   // Waveform,
   // MobileWaveform,
-  // Nav,
+  Nav,
   // Admin,
   // Artist,
 } from "../index";
@@ -100,7 +100,7 @@ const App = () => {
   if (loading) return <Loading />;
   return (
     <Box className="appContainer">
-      {/* {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />} */}
+      {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />}
       <Routes>
         <Route path="/" element={<Entrance />} />
         <Route path="/home" element={<Home />} />

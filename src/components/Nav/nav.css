@@ -1,0 +1,16 @@
+.navMainContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: black;
+  margin-bottom: 20px;
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.navLink.active {
+  color: #eaa128;
+}
