@@ -9,6 +9,7 @@ interface StoreWaveformState {
 
 const initialState: StoreWaveformState = {
   storeWaveformTrack: {
+    id: 0,
     title: "",
     artists: [],
     description: "",
