@@ -1,0 +1,60 @@
+.waveformMain {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  gap: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: black;
+  box-sizing: border-box;
+}
+
+.waveformMain > :nth-child(1) {
+  /* allow this container to grow to a 20% width limit */
+  max-width: 20%;
+  margin-right: 15px;
+}
+
+.waveformMain > :nth-child(2) {
+  /* allow the waveform to grow to fill the remaining space */
+  flex-grow: 1;
+}
+
+/* .waveformMain > :nth-child(3) {
+  width: 10%;
+} */
+
+.waveformTrackInfoDiv {
+  display: flex;
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  gap: 10px;
+}
+
+.waveformTrackArtistsDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.waveformTrackImg {
+  width: auto;
+  height: 70px;
+}
+
+.waveformArtistLink {
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.waveformArtistLink:hover {
+  text-decoration: underline;
+}
+
+.waveformControlsDiv {
+  display: flex;
+  align-items: center;
+}

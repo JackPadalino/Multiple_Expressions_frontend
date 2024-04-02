@@ -7,7 +7,10 @@ import "react-social-icons/instagram";
 // import "react-social-icons/tiktok";
 
 import TrackSwiper from "./TrackSwiper";
-import { setStoreWaveformTrack } from "../../store/waveformSlice";
+import {
+  setStoreWaveformTrack,
+  setStoreDisplayWaveform,
+} from "../../store/waveformSlice";
 import { TrackInt } from "../../ints/ints";
 import "./home.css";
 
@@ -17,6 +20,7 @@ const Home = () => {
   const featuredTracks = storeTracks.filter((track) => track.featured == true);
 
   const handlePlay = (track: TrackInt) => {
+    dispatch(setStoreDisplayWaveform(true));
     dispatch(setStoreWaveformTrack(track));
   };
 

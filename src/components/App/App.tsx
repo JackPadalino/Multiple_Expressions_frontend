@@ -15,7 +15,7 @@ import {
   // Visual,
   // Auditory,
   // Live,
-  // Waveform,
+  Waveform,
   // MobileWaveform,
   Nav,
   // Admin,
@@ -113,6 +113,7 @@ const App = () => {
         {/* <Route path="/*" element={<NotFound />} /> */}
       </Routes>
       {/* {mobileView ? <MobileWaveform /> : <Waveform />} */}
+      <Waveform />
     </Box>
   );
 };
