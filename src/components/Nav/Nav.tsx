@@ -8,9 +8,9 @@ const Nav = () => {
       <NavLink to="/home" className="navLink">
         Home
       </NavLink>
-      {/* <NavLink to="/auditory" className="navLink">
+      <NavLink to="/auditory" className="navLink">
         Auditory
-      </NavLink> */}
+      </NavLink>
       {/* <NavLink to="/visual" className="navLink">
         Visual
       </NavLink> */}

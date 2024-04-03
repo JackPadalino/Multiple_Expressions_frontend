@@ -13,7 +13,7 @@ import {
   Entrance,
   // Track,
   // Visual,
-  // Auditory,
+  Auditory,
   // Live,
   Waveform,
   // MobileWaveform,
@@ -105,7 +105,7 @@ const App = () => {
         <Route path="/" element={<Entrance />} />
         <Route path="/home" element={<Home />} />
         {/* <Route path="/visual" element={<Visual />} /> */}
-        {/* <Route path="/auditory" element={<Auditory />} /> */}
+        <Route path="/auditory" element={<Auditory />} />
         {/* <Route path="/live" element={<Live />} /> */}
         {/* <Route path="/admin" element={<Admin />} /> */}
         {/* <Route path="/artist/:id" element={<Artist />} /> */}

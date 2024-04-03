@@ -1,0 +1,166 @@
+@media only screen and (max-width: 600px) {
+  .auditoryMainContainer {
+    flex-direction: column;
+  }
+
+  .auditoryTracksDiv {
+    gap: 10px;
+  }
+
+  .auditoryTrackPhoto {
+    width: 100px;
+    height: auto;
+    max-height: 100px;
+  }
+
+  .auditoryTrackTitle {
+    font-size: 18px;
+  }
+
+  .auditoryArtistLink {
+    font-size: 13px;
+  }
+
+  .auditoryTag {
+    font-size: 10px;
+  }
+
+  /* .auditoryPlayingTrackImg {
+    width: 100px;
+    height: auto;
+  }
+
+  .auditoryPlayingTrackArtistName {
+    font-size: 10px;
+  } */
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .auditoryTrackPhoto {
+    width: 125px;
+    height: auto;
+    max-height: 125px;
+  }
+
+  .auditoryTracksDiv {
+    gap: 10px;
+  }
+
+  .auditoryTag {
+    font-size: 10px;
+  }
+
+  /* .auditoryPlayingTrackImg {
+    width: 150px;
+    height: auto;
+  } */
+}
+
+@media only screen and (min-width: 1280px) {
+  .auditoryTrackPhoto {
+    width: 250px;
+    height: auto;
+    max-height: 250px;
+  }
+
+  .auditoryTracksDiv {
+    gap: 20px;
+  }
+
+  .auditoryTrackTitle {
+    font-size: 40px;
+    font-family: Quantify;
+  }
+
+  /* .auditoryPlayingTrackImg {
+    width: 225px;
+    height: auto;
+  }
+
+  .auditoryPlayingTrackContainer {
+    flex-direction: column;
+  } */
+}
+
+.auditoryMainContainer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 30px;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
+  gap: 20px;
+}
+
+.auditoryTracksDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.auditoryTrackPhoto {
+  cursor: pointer;
+}
+
+.auditoryTrackContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.auditoryTrackTitlePlayDiv {
+  display: flex;
+  align-items: center;
+}
+
+.auditoryArtistInfoDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.auditoryArtistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.auditoryArtistLink:hover {
+  text-decoration: underline;
+}
+
+.auditoryTagsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.auditoryPostedDate {
+  font-size: 10px;
+}
+
+/* pagination styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.Mui-selected {
+  background: inherit !important;
+  border-bottom: 1px solid rgb(234, 162, 42) !important;
+  border-radius: 0px !important;
+}
+
+/* .auditoryPlayingTrackContainer {
+  display: flex;
+  gap: 10px;
+  position: fixed;
+  right: 30px;
+}
+
+.auditoryPlayingTrackArtist {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auditoryPlayingTrackImg {
+  border-radius: 50%;
+} */
