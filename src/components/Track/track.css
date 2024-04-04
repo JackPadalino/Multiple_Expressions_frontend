@@ -1,0 +1,67 @@
+@media only screen and (max-width: 600px) {
+  .trackPhoto {
+    width: 300px;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .trackPhoto {
+    width: 300px;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .trackPhoto {
+    width: 400px;
+    height: auto;
+  }
+}
+
+.trackMainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
+}
+
+.trackPhoto {
+  cursor: pointer;
+}
+
+.trackTrackInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trackTitlePlayDiv {
+  display: flex;
+}
+
+.trackTitle {
+  font-family: Quantify;
+  font-size: 40px;
+  /* color: rgb(234, 162, 42); */
+}
+
+.trackArtists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trackArtistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.trackArtistLink:hover {
+  text-decoration: underline;
+}

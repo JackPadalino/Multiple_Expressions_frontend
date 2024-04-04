@@ -19,3 +19,5 @@ export { default as SingleTrack } from "./Auditory/SingleTrack";
 export { default as Artist } from "./Artist/Artist";
 export { default as ArtistInfo } from "./Artist/ArtistInfo";
 export { default as ArtistTracks } from "./Artist/ArtistTracks";
+
+export { default as Track } from "./Track/Track";
