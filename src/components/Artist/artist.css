@@ -1,0 +1,157 @@
+@media only screen and (max-width: 600px) {
+  .artistPageMainContainer {
+    gap: 30px;
+  }
+
+  .artistPageMobileImg {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .artistPageDesktopImg {
+    display: none;
+  }
+
+  .artistPageTrackPhoto {
+    width: 75px;
+    height: auto;
+    max-height: 75px;
+  }
+
+  .artistPageTrackTitle {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .artistPageMainContainer {
+    gap: 30px;
+  }
+
+  .artistPageArtistDiv {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .artistPageMobileImg {
+    display: none;
+  }
+
+  .artistPageDesktopImg {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+
+  .artistPageTrackPhoto {
+    width: 75px;
+    height: auto;
+    max-height: 75px;
+  }
+
+  .artistPageTrackTitle {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .artistPageArtistDiv {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .artistPageArtistInfo {
+    width: 50%;
+  }
+
+  .artistPageMobileImg {
+    display: none;
+  }
+
+  .artistPageDesktopImg {
+    display: block;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+  }
+
+  .artistPageTrackPhoto {
+    width: 100px;
+    height: auto;
+    max-height: 100px;
+  }
+}
+
+.artistPageMainContainer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 30px;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
+}
+
+.artistPageArtistInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.artistPageName {
+  font-family: Quantify;
+}
+
+.artistPageSocials {
+  display: flex;
+  gap: 10px;
+}
+
+.artistPageTracks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.artistPageTrackContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.artistPageTrackPhoto {
+  cursor: pointer;
+}
+
+.artistPageTracksSectionTitle {
+  font-family: Coolvetica;
+}
+
+.artistPageTrackTitlePlayDiv {
+  display: flex;
+  align-items: center;
+}
+
+.artistPageArtistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.artistPageArtistLink:hover {
+  text-decoration: underline;
+}
+
+.artistPageTagsDiv {
+  display: flex;
+  gap: 2px;
+}
+
+.artistPageTag {
+  font-size: 12px;
+}
+
+.artistPagePostedDate {
+  font-size: 10px;
+}
