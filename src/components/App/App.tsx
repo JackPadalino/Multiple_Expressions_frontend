@@ -84,7 +84,7 @@ const App = () => {
 
   // useLocation to determine the path name and render a nav
   // only on certain routes
-  // const location = useLocation();
+  const location = useLocation();
 
   // array of routes that should include the Nav component
   const routesWithNav: string[] = [
