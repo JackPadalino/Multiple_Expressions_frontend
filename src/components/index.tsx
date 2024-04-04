@@ -14,3 +14,8 @@ export { default as Waveform } from "./Waveform/Waveform";
 export { default as Auditory } from "./Auditory/Auditory";
 export { default as Paginate } from "./Auditory/Paginate";
 export { default as SingleTrack } from "./Auditory/SingleTrack";
+
+// Artist component
+export { default as Artist } from "./Artist/Artist";
+export { default as ArtistInfo } from "./Artist/ArtistInfo";
+export { default as ArtistTracks } from "./Artist/ArtistTracks";

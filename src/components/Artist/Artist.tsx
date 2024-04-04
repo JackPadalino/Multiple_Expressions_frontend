@@ -22,6 +22,8 @@ const Artist = () => {
     name: "",
     profile_photo: "",
     bio: "",
+    tracks: [],
+    social_media: [],
   });
 
   const formatDates = (tracks: TrackInt[]) => {

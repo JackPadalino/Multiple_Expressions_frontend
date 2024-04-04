@@ -19,7 +19,7 @@ import {
   // MobileWaveform,
   Nav,
   // Admin,
-  // Artist,
+  Artist,
 } from "../index";
 import { Box } from "@mui/material";
 import "./app.css";
@@ -108,7 +108,7 @@ const App = () => {
         <Route path="/auditory" element={<Auditory />} />
         {/* <Route path="/live" element={<Live />} /> */}
         {/* <Route path="/admin" element={<Admin />} /> */}
-        {/* <Route path="/artist/:id" element={<Artist />} /> */}
+        <Route path="/artist/:id" element={<Artist />} />
         {/* <Route path="/track/:id" element={<Track />} /> */}
         {/* <Route path="/*" element={<NotFound />} /> */}
       </Routes>
