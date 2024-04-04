@@ -66,7 +66,6 @@ const Artist = () => {
           console.error("Error setting up the request:", error.message);
         }
       } else {
-        // Other types of errors
         console.error("An unexpected error occurred:", error);
       }
     }
