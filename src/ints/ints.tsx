@@ -8,6 +8,8 @@ export interface ArtistInt {
   name: string;
   profile_photo: string;
   bio: string;
+  tracks: TrackInt[];
+  social_media: SocialMediaInt[];
 }
 
 export interface SocialMediaInt {
