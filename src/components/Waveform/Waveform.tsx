@@ -34,11 +34,11 @@ const Waveform = () => {
   const playSong = (track: TrackInt) => {
     if (waveformRef.current) {
       if (wavesurferRef.current) {
-        // @ts-expect-error: because I said so!
+        // @ts-expect-error: TS ignore error
         wavesurferRef.current.destroy();
         wavesurferRef.current = null;
       }
-      // @ts-expect-error: because I said so!
+      // @ts-expect-error: TS ignore error
       wavesurferRef.current = WaveSurfer.create({
         url: track.file,
         container: waveformRef.current,
@@ -60,28 +60,28 @@ const Waveform = () => {
         peaks: Array.from({ length: 1000 }, () => Math.random()),
       });
 
-      // @ts-expect-error: TS ignore erro
+      // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("ready", () => {
-        // @ts-expect-error: TS ignore erro
+        // @ts-expect-error: TS ignore error
         const seconds = wavesurferRef.current.getDuration();
-        // @ts-expect-error: TS ignore erro
+        // @ts-expect-error: TS ignore error
         setTrackDuration(formatTime(seconds));
-        // @ts-expect-error: TS ignore erro
+        // @ts-expect-error: TS ignore error
         wavesurferRef.current.play();
       });
 
-      // @ts-expect-error: TS ignore erro
+      // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("audioprocess", () => {
-        // @ts-expect-error: TS ignore erro
+        // @ts-expect-error: TS ignore error
         const seconds = wavesurferRef.current.getCurrentTime();
-        // @ts-expect-error: TS ignore erro
+        // @ts-expect-error: TS ignore error
         setCurrentTime(formatTime(seconds));
       });
-      // @ts-expect-error: TS ignore erro
+      // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("play", () => {
         setIsPlaying(true);
       });
-      // @ts-expect-error: TS ignore erro
+      // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("pause", () => {
         setIsPlaying(false);
       });

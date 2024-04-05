@@ -1,0 +1,66 @@
+@media only screen and (max-width: 600px) {
+  .waveformDrawer2Img {
+    height: 35%;
+    width: "auto";
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .waveformDrawer2Img {
+    display: none;
+  }
+}
+
+.waveformRef {
+  width: 95%;
+}
+
+.waveformDrawer1Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  padding: 5px;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  z-index: 1;
+}
+
+.waveformDrawer1Img {
+  height: 40px;
+  width: auto;
+}
+
+.waveformDrawer2Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  z-index: 1;
+}
+
+.waveformDrawer2TrackArtistsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.waveformDrawer2ArtistLink {
+  text-decoration: none;
+}
+
+.waveformDrawer2ControlsDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
