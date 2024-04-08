@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import "./mobileWaveform.css";
 
 // modal imports
@@ -9,24 +10,21 @@ import PauseIcon from "@mui/icons-material/Pause";
 
 import { TrackInt } from "../../ints/ints";
 
-interface Props {
+interface Drawer1Props {
   waveformTrack: TrackInt;
   isPlaying: boolean;
-  toggleDrawer: boolean;
-  handlePlayPauseClick:
+  handleToggleDrawer: () => void;
+  handlePlayPauseClick: (event: MouseEvent) => void;
 }
 
 const MobileWaveformDrawer1 = ({
   waveformTrack,
   isPlaying,
-  toggleDrawer,
+  handleToggleDrawer,
   handlePlayPauseClick,
-}) => {
+}: Drawer1Props) => {
   return (
-    <Box
-      className="waveformDrawer1Container"
-      onClick={toggleDrawer("bottom", true)}
-    >
+    <Box className="waveformDrawer1Container" onClick={handleToggleDrawer}>
       <img src={waveformTrack.track_photo} className="waveformDrawer1Img" />
       <Typography
         variant="h6"

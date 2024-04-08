@@ -9,13 +9,13 @@ import { TrackInt } from "../../ints/ints";
 import "./mobileWaveform.css";
 
 const MobileWaveform = () => {
-  const [trackModalState, setTrackModalState] = useState(false); // modal state
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [trackDuration, setTrackDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [trackModalState, setTrackModalState] = useState<boolean>(false); // modal state
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [trackDuration, setTrackDuration] = useState<number>(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
 
-  const waveformRef = useRef(null);
-  const wavesurferRef = useRef(null);
+  const waveformRef = useRef<HTMLDivElement | null>(null);
+  const wavesurferRef = useRef<HTMLDivElement | null>(null);
 
   const { storeWaveformTrack } = useAppSelector((state) => state.waveform);
 
@@ -91,23 +91,15 @@ const MobileWaveform = () => {
   };
 
   const handlePlayPauseClick = (event: MouseEvent) => {
-    // stop the play/pause click event from propogating up the DOM tree
-    // to prevent container click event and triggering 'toggleDrawer'
-    // function for the mobile player
     event.stopPropagation();
-    // @ts-expect-error: TS ignore error
-    wavesurferRef.current.playPause();
+    if (wavesurferRef.current) {
+      // @ts-expect-error: TS ignore error
+      wavesurferRef.current.playPause();
+    }
   };
 
   // modal toggle function
-  const toggleDrawer = () => () => {
-    // if (
-    //   event.type === "keydown" &&
-    //   (event.key === "Tab" || event.key === "Shift")
-    // ) {
-    //   return;
-    // }
-
+  const handleToggleDrawer = () => {
     setTrackModalState(!trackModalState);
   };
 
@@ -131,14 +123,14 @@ const MobileWaveform = () => {
         <MobileWaveformDrawer1
           waveformTrack={storeWaveformTrack}
           isPlaying={isPlaying}
-          toggleDrawer={toggleDrawer}
+          handleToggleDrawer={handleToggleDrawer}
           handlePlayPauseClick={handlePlayPauseClick}
         />
       )}
       <MobileWaveformDrawer2
         waveformTrack={storeWaveformTrack}
         isPlaying={isPlaying}
-        toggleDrawer={toggleDrawer}
+        handleToggleDrawer={handleToggleDrawer}
         handlePlayPauseClick={handlePlayPauseClick}
         handleJumpBack={handleJumpBack}
         handleJumpForward={handleJumpForward}

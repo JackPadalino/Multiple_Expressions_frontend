@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
 // MUI imports
@@ -7,13 +8,26 @@ import PauseIcon from "@mui/icons-material/Pause";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Forward10Icon from "@mui/icons-material/Forward10";
 import Replay10Icon from "@mui/icons-material/Replay10";
-
+import { TrackInt } from "../../ints/ints";
 import "./mobileWaveform.css";
+
+interface Drawer2Props {
+  waveformTrack: TrackInt;
+  isPlaying: boolean;
+  handleToggleDrawer: () => void;
+  handlePlayPauseClick: (event: MouseEvent) => void;
+  handleJumpBack: () => void;
+  handleJumpForward: () => void;
+  trackModalState: boolean;
+  waveformRef: HTMLDivElement | null;
+  currentTime: number;
+  trackDuration: number;
+}
 
 const MobileWaveformDrawer2 = ({
   waveformTrack,
   isPlaying,
-  toggleDrawer,
+  handleToggleDrawer,
   handlePlayPauseClick,
   handleJumpBack,
   handleJumpForward,
@@ -21,12 +35,12 @@ const MobileWaveformDrawer2 = ({
   waveformRef,
   currentTime,
   trackDuration,
-}) => {
+}: Drawer2Props) => {
   return (
     <Drawer
       anchor={"bottom"}
       open={trackModalState}
-      onClose={toggleDrawer("bottom", false)}
+      onClose={handleToggleDrawer}
       // variant="temporary"
       ModalProps={{
         keepMounted: true,
@@ -34,7 +48,7 @@ const MobileWaveformDrawer2 = ({
     >
       <Box className="waveformDrawer2Container">
         <IconButton
-          onClick={toggleDrawer("bottom", false)}
+          onClick={handleToggleDrawer}
           sx={{
             position: "absolute",
             top: 10,
@@ -64,7 +78,7 @@ const MobileWaveformDrawer2 = ({
                   key={artist.id}
                   to={`/artist/${artist.id}`}
                   className="waveformDrawer2ArtistLink"
-                  onClick={toggleDrawer("bottom", false)}
+                  onClick={handleToggleDrawer}
                 >
                   {artist.name}
                 </Link>
