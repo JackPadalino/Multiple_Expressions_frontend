@@ -8,7 +8,7 @@ export { default as TrackSwiper } from "./Home/TrackSwiper";
 
 // Waveform component
 export { default as Waveform } from "./Waveform/Waveform";
-// export { default as MobileWaveform } from "./Waveform/MobileWaveform";
+export { default as MobileWaveform } from "./Waveform/MobileWaveform";
 
 // Auditory component
 export { default as Auditory } from "./Auditory/Auditory";

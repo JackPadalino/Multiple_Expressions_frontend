@@ -86,6 +86,7 @@ const MobileWaveformDrawer2 = ({
             </>
           )}
         </Box>
+        {/* @ts-expect-error: TS ignore error */}
         <Box ref={waveformRef} className="waveformRef"></Box>
         <Box className="waveformDrawer2ControlsDiv">
           <IconButton onClick={handleJumpBack}>

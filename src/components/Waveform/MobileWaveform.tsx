@@ -17,7 +17,9 @@ const MobileWaveform = () => {
   const waveformRef = useRef<HTMLDivElement | null>(null);
   const wavesurferRef = useRef<HTMLDivElement | null>(null);
 
-  const { storeWaveformTrack } = useAppSelector((state) => state.waveform);
+  const { storeDisplayWaveform, storeWaveformTrack } = useAppSelector(
+    (state) => state.waveform
+  );
 
   // function to format seconds into 00:00 format
   const formatTime = (seconds: number) =>
@@ -119,7 +121,7 @@ const MobileWaveform = () => {
 
   return (
     <Box className="mobileWaveformContainer">
-      {Object.keys(storeWaveformTrack).length > 0 && (
+      {storeDisplayWaveform && (
         <MobileWaveformDrawer1
           waveformTrack={storeWaveformTrack}
           isPlaying={isPlaying}
@@ -135,6 +137,7 @@ const MobileWaveform = () => {
         handleJumpBack={handleJumpBack}
         handleJumpForward={handleJumpForward}
         trackModalState={trackModalState}
+        // @ts-expect-error: TS ignore error
         waveformRef={waveformRef}
         currentTime={currentTime}
         trackDuration={trackDuration}

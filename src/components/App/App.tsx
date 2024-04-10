@@ -16,7 +16,7 @@ import {
   Auditory,
   // Live,
   Waveform,
-  // MobileWaveform,
+  MobileWaveform,
   Nav,
   // Admin,
   Artist,
@@ -111,8 +111,7 @@ const App = () => {
         <Route path="/track/:id" element={<Track />} />
         {/* <Route path="/*" element={<NotFound />} /> */}
       </Routes>
-      {/* {mobileView ? <MobileWaveform /> : <Waveform />} */}
-      <Waveform />
+      {mobileView ? <MobileWaveform /> : <Waveform />}
     </Box>
   );
 };
