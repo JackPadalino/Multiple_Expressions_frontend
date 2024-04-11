@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, RefObject } from "react";
 import { Link } from "react-router-dom";
 
 // MUI imports
@@ -19,7 +19,7 @@ interface Drawer2Props {
   handleJumpBack: () => void;
   handleJumpForward: () => void;
   trackModalState: boolean;
-  waveformRef: HTMLDivElement | null;
+  waveformRef: RefObject<HTMLDivElement | null>;
   currentTime: number;
   trackDuration: number;
 }
@@ -86,7 +86,6 @@ const MobileWaveformDrawer2 = ({
             </>
           )}
         </Box>
-        {/* @ts-expect-error: TS ignore error */}
         <Box ref={waveformRef} className="waveformRef"></Box>
         <Box className="waveformDrawer2ControlsDiv">
           <IconButton onClick={handleJumpBack}>

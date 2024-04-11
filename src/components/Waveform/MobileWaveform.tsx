@@ -137,7 +137,6 @@ const MobileWaveform = () => {
         handleJumpBack={handleJumpBack}
         handleJumpForward={handleJumpForward}
         trackModalState={trackModalState}
-        // @ts-expect-error: TS ignore error
         waveformRef={waveformRef}
         currentTime={currentTime}
         trackDuration={trackDuration}
