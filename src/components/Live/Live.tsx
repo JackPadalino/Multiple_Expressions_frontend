@@ -1,20 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import Chat from "./Chat";
-import {
-  Box,
-  Container,
-  Typography,
-  TextField,
-  Button,
-  Avatar,
-} from "@mui/material";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { Box, Typography } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./live.css";
 
 const Live = () => {
-  const videoPlayerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [hasEnded, setHasEnded] = useState(false);
+  const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [hasEnded, setHasEnded] = useState<boolean>(false);
 
   const theme = createTheme();
 
@@ -29,20 +22,23 @@ const Live = () => {
 
   const initPlayer = async () => {
     // check if IVSPlayer is supported by the browser
+    // @ts-expect-error: TS ignore error
     if (IVSPlayer.isPlayerSupported && videoPlayerRef.current) {
+      // @ts-expect-error: TS ignore error
       const player = await IVSPlayer.create();
 
       // attach event listeners to listen for changes in player
+      // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
         setIsPlaying(true);
         setHasEnded(false);
       });
-
+      // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerState.ENDED, () => {
         setIsPlaying(false);
         setHasEnded(true);
       });
-
+      // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
         if (err.type === "ErrorNotAvailable") {
           setIsPlaying(false);

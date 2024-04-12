@@ -1,9 +1,14 @@
-import { useEffect, useState, useRef } from "react";
-import { Box, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { useEffect, useRef } from "react";
+import { ListItem, ListItemText } from "@mui/material";
 import { Virtuoso } from "react-virtuoso";
+import { ChatMessage } from "./Chat";
 import "./messagesList.css";
 
-const MessagesList = ({ chatMessages }) => {
+interface MessagesListProps {
+  chatMessages: ChatMessage[];
+}
+
+const MessagesList = ({ chatMessages }: MessagesListProps) => {
   const virtuosoRef = useRef(null);
 
   useEffect(() => {
@@ -13,6 +18,7 @@ const MessagesList = ({ chatMessages }) => {
 
   const scrollToBottom = () => {
     if (virtuosoRef.current) {
+      // @ts-expect-error: TS ignore error
       virtuosoRef.current.scrollToIndex({
         index: chatMessages.length - 1,
         behavior: "smooth",
@@ -26,7 +32,7 @@ const MessagesList = ({ chatMessages }) => {
       className="virtuosoList"
       style={{ height: 200 }}
       data={chatMessages}
-      itemContent={(index, message) => (
+      itemContent={(index: number, message: ChatMessage) => (
         <ListItem
           key={index}
           component="div"
@@ -36,7 +42,7 @@ const MessagesList = ({ chatMessages }) => {
           <ListItemText primary={`${message.username}: ${message.content}`} />
         </ListItem>
       )}
-      atBottomStateChange={(atBottom) => {
+      atBottomStateChange={(atBottom: boolean) => {
         // scroll to the bottom if not at bottom of chat
         if (!atBottom) {
           scrollToBottom();

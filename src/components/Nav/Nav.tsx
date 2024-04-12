@@ -11,12 +11,9 @@ const Nav = () => {
       <NavLink to="/auditory" className="navLink">
         Auditory
       </NavLink>
-      {/* <NavLink to="/visual" className="navLink">
-        Visual
-      </NavLink> */}
-      {/* <NavLink to="/live" className="navLink">
+      <NavLink to="/live" className="navLink">
         Live
-      </NavLink> */}
+      </NavLink>
     </Box>
   );
 };

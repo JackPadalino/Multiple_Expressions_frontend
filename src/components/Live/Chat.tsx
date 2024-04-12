@@ -1,37 +1,39 @@
-import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import axios from "axios";
-import {
-  Box,
-  Typography,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import MessagesList from "./MessagesList";
 import "./chat.css";
 
-const Chat = ({ isPlaying }) => {
-  const [chatConnection, setChatConnection] = useState(null);
-  const [username, setUsername] = useState("");
-  const [message, setMessage] = useState("");
-  const [chatMessages, setChatMessages] = useState([]);
-  const [chatError, setChatError] = useState(null);
-  const [firstMessageSent, setFirstMessageSent] = useState(false);
+interface ChatProps {
+  isPlaying: boolean;
+}
 
-  const handleUsernameChange = (e) => {
+export interface ChatMessage {
+  username: string;
+  content: string;
+}
+
+const Chat = ({ isPlaying }: ChatProps) => {
+  const [chatConnection, setChatConnection] = useState<null>(null);
+  const [username, setUsername] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [chatError, setChatError] = useState<string | null>(null);
+  const [firstMessageSent, setFirstMessageSent] = useState<boolean>(false);
+
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
 
-  const handleMessageChange = (e) => {
+  const handleMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
   };
 
-  const updateChat = (newMessage) => {
+  const updateChat = (newMessage: ChatMessage) => {
     setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
   };
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = (e: SyntheticEvent) => {
     e.preventDefault();
     // check for empty strings or white spaces before sending
     if (message.trim() !== "") {
@@ -42,6 +44,7 @@ const Chat = ({ isPlaying }) => {
           Content: message,
         };
         try {
+          // @ts-expect-error: TS ignore error
           chatConnection.send(JSON.stringify(payload));
           if (!firstMessageSent) setFirstMessageSent(true); // checking if the user has sent their first message yet
           setChatError(null); // reset chat error message
@@ -57,7 +60,7 @@ const Chat = ({ isPlaying }) => {
     }
   };
 
-  const handleJoinChat = async (e) => {
+  const handleJoinChat = async (e: SyntheticEvent) => {
     e.preventDefault();
     let url;
     if (import.meta.env.VITE_DEV_MODE === "true") {
@@ -87,26 +90,27 @@ const Chat = ({ isPlaying }) => {
             updateChat({
               username: data.Sender.Attributes.username,
               content: data.Content,
-              timestamp: data.SendTime,
+              // timestamp: data.SendTime,
             });
           };
+          // @ts-expect-error: TS ignore error
           setChatConnection(connection);
           setChatError(null);
         } catch (error) {
-          if (error.response) {
-            // a request was made, but the server responded with an error status
-            console.error(
-              `Server responded with status ${error.response.status}`
-            );
-            console.error(error.response.data); // response data from the server
-          } else if (error.request) {
-            // a request was made, but no response was received
-            console.error("No response received from the server");
+          if (axios.isAxiosError(error)) {
+            if (error.response) {
+              console.error(
+                "Request failed with status code:",
+                error.response.status
+              );
+            } else if (error.request) {
+              console.error("No response received:", error.request);
+            } else {
+              console.error("Error setting up the request:", error.message);
+            }
           } else {
-            // something happened in setting up the request that triggered an Error
-            console.error("Error setting up the request:", error.message);
+            console.error("An unexpected error occurred:", error);
           }
-          setChatError("Oops! Something went wrong.");
         }
       }
     } else {
