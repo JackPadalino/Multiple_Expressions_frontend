@@ -8,7 +8,7 @@ import { setStoreTracks } from "../../store/musicSlice";
 import { TrackInt } from "../../ints/ints";
 import {
   Home,
-  // NotFound,
+  NotFound,
   Loading,
   Entrance,
   Track,
@@ -109,7 +109,7 @@ const App = () => {
         {/* <Route path="/live" element={<Live />} /> */}
         <Route path="/artist/:id" element={<Artist />} />
         <Route path="/track/:id" element={<Track />} />
-        {/* <Route path="/*" element={<NotFound />} /> */}
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       {mobileView ? <MobileWaveform /> : <Waveform />}
     </Box>

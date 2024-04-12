@@ -1,4 +1,5 @@
 export { default as Loading } from "./Loading/Loading";
+export { default as NotFound } from "./NotFound/NotFound";
 export { default as Entrance } from "./Entrance/Entrance";
 export { default as Nav } from "./Nav/Nav";
 
