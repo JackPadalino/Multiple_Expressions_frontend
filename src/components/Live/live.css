@@ -1,0 +1,64 @@
+@media only screen and (max-width: 600px) {
+  .liveMainContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .phantomContainer {
+    display: none;
+  }
+  .playerContainer {
+    width: 90%;
+  }
+  .chatContainer {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .liveMainContainer {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .phantomContainer {
+    display: none;
+  }
+  .playerContainer {
+    width: 70%;
+  }
+  .chatContainer {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .liveMainContainer {
+    flex-direction: row;
+  }
+  .phantomContainer {
+    width: 25%;
+  }
+  .playerContainer {
+    width: 50%;
+  }
+  .chatContainer {
+    width: 25%;
+  }
+}
+
+.liveMainContainer {
+  display: flex;
+  gap: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
+}
+
+.playerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.player {
+  width: 100%;
+}
