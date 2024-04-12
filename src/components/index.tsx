@@ -21,4 +21,8 @@ export { default as Artist } from "./Artist/Artist";
 export { default as ArtistInfo } from "./Artist/ArtistInfo";
 export { default as ArtistTracks } from "./Artist/ArtistTracks";
 
+// Live component
+export { default as Live } from "./Live/Live";
+export { default as Chat } from "./Live/Chat";
+
 export { default as Track } from "./Track/Track";
