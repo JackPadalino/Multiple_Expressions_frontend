@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch } from "../../store/hooks";
-import axios from "axios";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { Box } from "@mui/material";
 import {
   setStoreWaveformTrack,
@@ -16,6 +15,7 @@ import "./artist.css";
 const Artist = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
+  const { storeArtists } = useAppSelector((state) => state.artists);
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState<ArtistInt>({
     id: 0,
@@ -40,44 +40,22 @@ const Artist = () => {
     return newDateTracks;
   };
 
-  const fetchArtistData = async () => {
-    let url;
-    if (import.meta.env.VITE_DEV_MODE === "true") {
-      url = import.meta.env.VITE_DEV_URL;
-    } else {
-      url = import.meta.env.VITE_PROD_URL;
-    }
-    try {
-      const response = await axios.get(`${url}/api/music/artists/${id}`);
-      const updatedTracks = formatDates(response.data.tracks);
-      response.data.tracks = updatedTracks;
-      setArtist(response.data);
-      setLoading(false);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          console.error(
-            "Request failed with status code:",
-            error.response.status
-          );
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-        } else {
-          console.error("Error setting up the request:", error.message);
-        }
-      } else {
-        console.error("An unexpected error occurred:", error);
-      }
-    }
-  };
-
   const handlePlay = (track: TrackInt) => {
     dispatch(setStoreDisplayWaveform(true));
     dispatch(setStoreWaveformTrack(track));
   };
 
   useEffect(() => {
-    fetchArtistData();
+    const foundArtist = storeArtists.find((artist) => artist.id === Number(id));
+    if (foundArtist) {
+      const formattedTracks = formatDates(foundArtist.tracks);
+      // Have to create a new object with the formatted tracks.
+      // State variables (storeArtists and storeTracks) that are being
+      // pulled from the Redux store are read-only and cannot be modified
+      const newArtistCopy = { ...foundArtist, tracks: formattedTracks };
+      setArtist(newArtistCopy);
+      setLoading(false);
+    }
   }, []);
 
   if (loading) return null;
