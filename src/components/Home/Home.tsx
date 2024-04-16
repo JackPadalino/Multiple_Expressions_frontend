@@ -18,7 +18,8 @@ import "./home.css";
 const Home = () => {
   const dispatch = useAppDispatch();
   const { storeTracks } = useAppSelector((state) => state.music);
-  const featuredTracks = storeTracks.filter((track) => track.featured == true);
+  const { featuredTracks } = useAppSelector((state) => state.music);
+  // const featuredTracks = storeTracks.filter((track) => track.featured == true);
 
   const handlePlay = (track: TrackInt) => {
     dispatch(setStoreDisplayWaveform(true));

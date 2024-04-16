@@ -4,7 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setStoreMobileView } from "../../store/mobileViewSlice";
 import { setStoreArtists } from "../../store/artistSlice";
-import { setStoreTracks } from "../../store/musicSlice";
+import { setFeaturedTracks, setStoreTracks } from "../../store/musicSlice";
 import { TrackInt } from "../../ints/ints";
 import {
   Home,
@@ -29,6 +29,7 @@ const App = () => {
   const mobileView = useAppSelector(
     (state) => state.mobileView.storeMobileView
   );
+  const featuredTracks = useAppSelector((state) => state.music.featuredTracks);
   const [loading, setLoading] = useState<boolean>(true);
 
   // check for mobile view - send state up to redux store
@@ -36,6 +37,26 @@ const App = () => {
   const checkMobileView = () => {
     const mediaQuery = window.matchMedia("(max-width: 1280px)");
     dispatch(setStoreMobileView(mediaQuery.matches));
+  };
+
+  const fetchFeaturedData = () => {
+    let url: string;
+    if (import.meta.env.VITE_DEV_MODE === "true") {
+      url = import.meta.env.VITE_DEV_URL;
+    } else {
+      url = import.meta.env.VITE_PROD_URL;
+    }
+    axios
+      .get(`${url}/api/music/tracks/setup/featured`)
+      .then((response) => {
+        const updatedTracks = formatDates(response.data);
+        dispatch(setFeaturedTracks(updatedTracks));
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
   };
 
   const fetchData = () => {
@@ -55,7 +76,6 @@ const App = () => {
         const updatedTracks = formatDates(response.data);
         dispatch(setStoreTracks(updatedTracks));
         setLoading(false);
-        return axios.get(`${url}/api/music/videos/all`);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -79,8 +99,12 @@ const App = () => {
 
   useEffect(() => {
     checkMobileView();
-    fetchData();
+    fetchFeaturedData();
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [featuredTracks]);
 
   // useLocation to determine the path name and render a nav
   // only on certain routes
