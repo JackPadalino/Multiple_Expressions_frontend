@@ -29,7 +29,6 @@ const App = () => {
   const mobileView = useAppSelector(
     (state) => state.mobileView.storeMobileView
   );
-  const featuredTracks = useAppSelector((state) => state.music.featuredTracks);
   const [loading, setLoading] = useState<boolean>(true);
 
   // check for mobile view - send state up to redux store
@@ -39,7 +38,7 @@ const App = () => {
     dispatch(setStoreMobileView(mediaQuery.matches));
   };
 
-  const fetchFeaturedData = () => {
+  const fetchData = () => {
     let url: string;
     if (import.meta.env.VITE_DEV_MODE === "true") {
       url = import.meta.env.VITE_DEV_URL;
@@ -52,22 +51,8 @@ const App = () => {
         const updatedTracks = formatDates(response.data);
         dispatch(setFeaturedTracks(updatedTracks));
         setLoading(false);
+        return axios.get(`${url}/api/music/artists/all`);
       })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
-  };
-
-  const fetchData = () => {
-    let url: string;
-    if (import.meta.env.VITE_DEV_MODE === "true") {
-      url = import.meta.env.VITE_DEV_URL;
-    } else {
-      url = import.meta.env.VITE_PROD_URL;
-    }
-    axios
-      .get(`${url}/api/music/artists/all`)
       .then((response) => {
         dispatch(setStoreArtists(response.data));
         return axios.get(`${url}/api/music/tracks/all`);
@@ -75,11 +60,9 @@ const App = () => {
       .then((response) => {
         const updatedTracks = formatDates(response.data);
         dispatch(setStoreTracks(updatedTracks));
-        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setLoading(false);
       });
   };
 
@@ -99,12 +82,8 @@ const App = () => {
 
   useEffect(() => {
     checkMobileView();
-    fetchFeaturedData();
-  }, []);
-
-  useEffect(() => {
     fetchData();
-  }, [featuredTracks]);
+  }, []);
 
   // useLocation to determine the path name and render a nav
   // only on certain routes

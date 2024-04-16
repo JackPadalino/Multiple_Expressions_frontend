@@ -17,9 +17,11 @@ export const musicSlice = createSlice({
   initialState,
   reducers: {
     setFeaturedTracks: (state, action: PayloadAction<TrackInt[]>) => {
+      console.log("Set featured tracks store function called");
       state.featuredTracks = action.payload;
     },
     setStoreTracks: (state, action: PayloadAction<TrackInt[]>) => {
+      console.log("Set all tracks store function called");
       state.storeTracks = action.payload;
     },
   },
