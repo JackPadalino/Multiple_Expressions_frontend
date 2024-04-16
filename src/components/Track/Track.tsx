@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { Link } from "react-router-dom";
 import { Box, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -13,8 +12,9 @@ import { ArtistInt, TrackInt } from "../../ints/ints";
 import "./track.css";
 
 const Track = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { id } = useParams();
+  const { storeTracks } = useAppSelector((state) => state.music);
   const [loading, setLoading] = useState<boolean>(true);
   const [track, setTrack] = useState<TrackInt>({
     id: 0,
@@ -37,43 +37,18 @@ const Track = () => {
     };
   };
 
-  const fetchTrackData = async () => {
-    let url;
-    if (import.meta.env.VITE_DEV_MODE === "true") {
-      url = import.meta.env.VITE_DEV_URL;
-    } else {
-      url = import.meta.env.VITE_PROD_URL;
-    }
-    try {
-      const response = await axios.get(`${url}/api/music/tracks/${id}`);
-      const updatedTrack = formatDate(response.data);
-      setTrack(updatedTrack);
-      setLoading(false);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response) {
-          console.error(
-            "Request failed with status code:",
-            error.response.status
-          );
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-        } else {
-          console.error("Error setting up the request:", error.message);
-        }
-      } else {
-        console.error("An unexpected error occurred:", error);
-      }
-    }
-  };
-
   const handlePlay = (track: TrackInt) => {
     dispatch(setStoreDisplayWaveform(true));
     dispatch(setStoreWaveformTrack(track));
   };
 
   useEffect(() => {
-    fetchTrackData();
+    const foundTrack = storeTracks.find((track) => track.id === Number(id));
+    if (foundTrack) {
+      const formattedTrack = formatDate(foundTrack);
+      setTrack(formattedTrack);
+      setLoading(false);
+    }
   }, []);
 
   if (loading) return null;
