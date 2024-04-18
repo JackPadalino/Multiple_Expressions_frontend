@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 // React social Icons
 import { SocialIcon } from "react-social-icons/component";
 import "react-social-icons/instagram";
-// import "react-social-icons/tiktok";
 
 import TrackSwiper from "./TrackSwiper";
 import {
@@ -17,9 +16,7 @@ import "./home.css";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { storeTracks } = useAppSelector((state) => state.music);
   const { featuredTracks } = useAppSelector((state) => state.music);
-  // const featuredTracks = storeTracks.filter((track) => track.featured == true);
 
   const handlePlay = (track: TrackInt) => {
     dispatch(setStoreDisplayWaveform(true));
@@ -33,16 +30,13 @@ const Home = () => {
         <h1 className="homeTitle">Multiple Expressions</h1>
         <p className="homeDesc">
           Showcasing the wealth of lesser-known talent of the NYC electronic
-          music scene.
+          music scene
         </p>
       </Box>
-      <p className="homeInvitation">
-        Want to post with us? DM us on Instagram or email
-        <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
-      </p>
-      <Box className="homeSocialsDiv">
-        <p style={{ fontSize: "14px", fontStyle: "italic" }}>
-          We post all tracks.
+      <Box className="homeInvitationDiv">
+        <p className="homeInvitation">
+          Want to post with us? DM us on Instagram or email
+          <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
         </p>
         <SocialIcon
           bgColor="black"
@@ -51,6 +45,13 @@ const Home = () => {
           target="_blank"
         />
       </Box>
+      <p className="disclaimer">
+        Mutliple Expressions does not own or claim to own any of the music
+        posted on this platform and will use any posted material for profit.
+        Please email us at{" "}
+        <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>{" "}
+        with any copyright issues.
+      </p>
     </Box>
   );
 };

@@ -3,9 +3,9 @@
     width: 95%;
   }
 
-  .homeInvitation {
+  /* .homeInvitation {
     width: 95%;
-  }
+  } */
 
   .swiper {
     width: 95%;
@@ -26,9 +26,9 @@
       width: 75%;
     } */
 
-  .homeInvitation {
+  /* .homeInvitation {
     width: 75%;
-  }
+  } */
 
   .swiper {
     width: 50%;
@@ -50,9 +50,9 @@
     height: auto;
   }
 
-  .homeInvitation {
+  /* .homeInvitation {
     width: 33%;
-  }
+  } */
 
   .swiper {
     width: 33%;
@@ -159,6 +159,19 @@
   color: rgb(234, 162, 42);
 }
 
+.homeInvitationDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.disclaimer {
+  text-align: center;
+  font-style: italic;
+  font-size: 12px;
+}
+
 /*~~~~~Swiper JS styling~~~~~*/
 /* 
   Swiper JS comes with built-in styles
@@ -186,7 +199,7 @@
 /* 
   using "unset" to removev the default positioning of
   the pagination div set by Swiper JS
-   */
+*/
 .swiper-pagination {
   position: unset;
 }
