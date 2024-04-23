@@ -4,21 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
-    <!-- script tag for AWS IVS Broadcast CDN-->
-    <script src="https://web-broadcast.live-video.net/1.8.0/amazon-ivs-web-broadcast.js"></script>
-    <!-- script tag for AWS IVS Player CDN-->
-    <script src="https://player.live-video.net/1.24.0/amazon-ivs-player.min.js"></script>
     <title>Multiple Expressions</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- script tag for AWS IVS Broadcast CDN-->
+    <script
+      src="https://web-broadcast.live-video.net/1.8.0/amazon-ivs-web-broadcast.js"
+      defer
+    ></script>
+    <!-- script tag for AWS IVS Player CDN-->
+    <script
+      src="https://player.live-video.net/1.24.0/amazon-ivs-player.min.js"
+      defer
+    ></script>
   </body>
 </html>
