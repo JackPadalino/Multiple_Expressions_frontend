@@ -9,7 +9,8 @@
 
   .swiper {
     width: 95%;
-    height: auto;
+    /* height: auto; */
+    aspect-ratio: 1/1;
   }
 
   .swiper-button-next::after {
@@ -32,7 +33,8 @@
 
   .swiper {
     width: 50%;
-    height: auto;
+    /* height: auto; */
+    aspect-ratio: 1/1;
   }
 
   .swiper-button-next::after {
@@ -56,7 +58,8 @@
 
   .swiper {
     width: 33%;
-    height: auto;
+    /* height: auto; */
+    aspect-ratio: 1/1;
   }
 
   .swiper-button-next::after {
@@ -200,9 +203,9 @@
   using "unset" to removev the default positioning of
   the pagination div set by Swiper JS
 */
-.swiper-pagination {
+/* .swiper-pagination {
   position: unset;
-}
+} */
 
 .swiper-pagination-bullet {
   background: white;
