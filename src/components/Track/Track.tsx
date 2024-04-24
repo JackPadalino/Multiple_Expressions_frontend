@@ -49,7 +49,7 @@ const Track = () => {
       setTrack(formattedTrack);
       setLoading(false);
     }
-  }, []);
+  }, [storeTracks]);
 
   if (loading) return null;
   return (

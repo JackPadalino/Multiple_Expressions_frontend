@@ -56,7 +56,7 @@ const Artist = () => {
       setArtist(newArtistCopy);
       setLoading(false);
     }
-  }, []);
+  }, [storeArtists]);
 
   if (loading) return null;
   return (
