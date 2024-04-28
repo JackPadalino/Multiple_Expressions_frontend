@@ -140,9 +140,9 @@
   position: relative;
 }
 
-/* .swiper-pagination {
+.swiper-pagination {
   position: unset;
-} */
+}
 
 .swiper-pagination-bullet {
   background: white;

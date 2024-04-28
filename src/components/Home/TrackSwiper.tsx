@@ -57,13 +57,13 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
                 </Link>
               ))}
             </Box>
-            {/* <Box className="swiperTagsDiv">
+            <Box className="swiperTagsDiv">
               {track.tags.map((tag) => (
                 <p className="swiperTag" key={tag.id}>
                   #{tag.title}
                 </p>
               ))}
-            </Box> */}
+            </Box>
           </Box>
         </SwiperSlide>
       ))}
