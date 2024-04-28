@@ -30,7 +30,7 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
       {featuredTracks.map((track, index) => (
         <SwiperSlide key={index}>
           <img src={track.track_photo} className="swiperTrackImg" />
-          <Box>
+          <Box className="swiperTrackInfo">
             <h3>New featured track</h3>
             <Box className="swiperTrackTitlePlayDiv">
               <h2 className="swiperTrackTitle">{track.title}</h2>

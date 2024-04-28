@@ -158,12 +158,6 @@
   position: relative;
 }
 
-.swiper-slide > :nth-child(2) {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-
 /* .swiper-pagination {
   position: unset;
 } */
@@ -174,6 +168,14 @@
 
 .swiper-pagination-bullet-active {
   background: white;
+}
+
+.swiperTrackInfo {
+  /* background-color: #2626267d; */
+  position: absolute;
+  bottom: 0px;
+  padding: 10px;
+  width: 100%;
 }
 
 .swiperTrackTitlePlayDiv {
