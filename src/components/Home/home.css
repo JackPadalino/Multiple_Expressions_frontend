@@ -5,7 +5,7 @@
 
   .swiper {
     width: 95%;
-    height: auto;
+    height: 95%;
     /* aspect-ratio: 1/1; */
   }
 
@@ -21,7 +21,7 @@
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
   .swiper {
     width: 50%;
-    height: auto;
+    height: 50%;
     /* aspect-ratio: 1/1; */
   }
 
@@ -37,7 +37,7 @@
 @media only screen and (min-width: 1280px) {
   .swiper {
     width: 33%;
-    height: auto;
+    height: 33%;
     /* aspect-ratio: 1/1; */
   }
 
