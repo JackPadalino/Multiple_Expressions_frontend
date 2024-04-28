@@ -47,11 +47,6 @@
 }
 
 @media only screen and (min-width: 1280px) {
-  .homeTrackImg {
-    width: 100%;
-    height: auto;
-  }
-
   /* .homeInvitation {
     width: 33%;
   } */
@@ -85,7 +80,7 @@
 .homeFeaturedTrackDiv {
   display: flex;
   /* flex-direction: column;
-    align-items: center; */
+  align-items: center; */
   position: relative;
 }
 
@@ -95,38 +90,8 @@
   left: 10px;
 }
 
-.homeTrackTitlePlayDiv {
-  display: flex;
-  align-items: center;
-}
-
-.homeTrackTitle {
-  font-size: 30px;
-  font-family: Coolvetica;
-}
-
-.homeArtistInfoDiv {
-  display: flex;
-  flex-direction: column;
-}
-
-.homeArtistLink {
-  cursor: pointer;
-  text-decoration: none;
-  color: rgb(234, 162, 42);
-}
-
 .homeArtistLink:hover {
   text-decoration: underline;
-}
-
-.homeTagsDiv {
-  display: flex;
-  gap: 10px;
-}
-
-.homeTag {
-  font-size: 12px;
 }
 
 .homeIntroDiv {
@@ -181,9 +146,9 @@
   like swiper,swiper-slide, and swiper-slide img
   these class names are not explicitly set in the .jsx
   component 
-  */
+*/
 
-.homeTrackImg {
+.swiperTrackImg {
   width: 100%;
   height: auto;
 }
@@ -199,10 +164,6 @@
   left: 10px;
 }
 
-/* 
-  using "unset" to removev the default positioning of
-  the pagination div set by Swiper JS
-*/
 /* .swiper-pagination {
   position: unset;
 } */
@@ -214,3 +175,35 @@
 .swiper-pagination-bullet-active {
   background: white;
 }
+
+.swiperTrackTitlePlayDiv {
+  display: flex;
+  align-items: center;
+}
+
+.swiperTrackTitle {
+  font-size: 30px;
+  font-family: Coolvetica;
+}
+
+.swiperArtistInfoDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.swiperArtistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.swiperTagsDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.swiperTag {
+  font-size: 12px;
+}
+
+/*~~~~~End Swiper styling~~~~~*/

@@ -29,11 +29,11 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
     >
       {featuredTracks.map((track, index) => (
         <SwiperSlide key={index}>
-          <img src={track.track_photo} className="homeTrackImg" />
+          <img src={track.track_photo} className="swiperTrackImg" />
           <Box>
             <h3>New featured track</h3>
-            <Box className="homeTrackTitlePlayDiv">
-              <h2 className="homeTrackTitle">{track.title}</h2>
+            <Box className="swiperTrackTitlePlayDiv">
+              <h2 className="swiperTrackTitle">{track.title}</h2>
               <IconButton
                 onClick={() => handlePlay(track)}
                 sx={{ padding: "0px", margin: "0px" }}
@@ -46,24 +46,24 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
                 />
               </IconButton>
             </Box>
-            <Box className="homeArtistInfoDiv">
+            <Box className="swiperArtistInfoDiv">
               {track.artists.map((artist) => (
                 <Link
                   key={artist.id}
                   to={`/artist/${artist.id}`}
-                  className="homeArtistLink"
+                  className="swiperArtistLink"
                 >
                   {artist.name}
                 </Link>
               ))}
             </Box>
-            <Box className="homeTagsDiv">
+            {/* <Box className="swiperTagsDiv">
               {track.tags.map((tag) => (
-                <p className="homeTag" key={tag.id}>
+                <p className="swiperTag" key={tag.id}>
                   #{tag.title}
                 </p>
               ))}
-            </Box>
+            </Box> */}
           </Box>
         </SwiperSlide>
       ))}
