@@ -21,53 +21,54 @@ interface SwiperProps {
 
 const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
   return (
-    <Swiper
-      navigation={true}
-      pagination={true}
-      modules={[Navigation, Pagination]}
-      className="mySwiper"
-    >
-      {featuredTracks.map((track, index) => (
-        <SwiperSlide key={index}>
-          <img src={track.track_photo} className="swiperTrackImg" />
-          <Box className="swiperTrackInfo">
-            <h3>New featured track</h3>
-            <Box className="swiperTrackTitlePlayDiv">
-              <h2 className="swiperTrackTitle">{track.title}</h2>
-              <IconButton
-                onClick={() => handlePlay(track)}
-                sx={{ padding: "0px", margin: "0px" }}
-              >
-                <PlayArrowIcon
-                  fontSize="medium"
-                  sx={{
-                    color: "orange",
-                  }}
-                />
-              </IconButton>
-            </Box>
-            <Box className="swiperArtistInfoDiv">
-              {track.artists.map((artist) => (
-                <Link
-                  key={artist.id}
-                  to={`/artist/${artist.id}`}
-                  className="swiperArtistLink"
+    <Box className="swiperMainContainer">
+      <Swiper
+        navigation={true}
+        pagination={true}
+        modules={[Navigation, Pagination]}
+      >
+        {featuredTracks.map((track, index) => (
+          <SwiperSlide key={index}>
+            <img src={track.track_photo} className="swiperTrackImg" />
+            <Box className="swiperTrackInfo">
+              <h3>New featured track</h3>
+              <Box className="swiperTrackTitlePlayDiv">
+                <h2 className="swiperTrackTitle">{track.title}</h2>
+                <IconButton
+                  onClick={() => handlePlay(track)}
+                  sx={{ padding: "0px", margin: "0px" }}
                 >
-                  {artist.name}
-                </Link>
-              ))}
+                  <PlayArrowIcon
+                    fontSize="medium"
+                    sx={{
+                      color: "orange",
+                    }}
+                  />
+                </IconButton>
+              </Box>
+              <Box className="swiperArtistInfoDiv">
+                {track.artists.map((artist) => (
+                  <Link
+                    key={artist.id}
+                    to={`/artist/${artist.id}`}
+                    className="swiperArtistLink"
+                  >
+                    {artist.name}
+                  </Link>
+                ))}
+              </Box>
+              <Box className="swiperTagsDiv">
+                {track.tags.map((tag) => (
+                  <p className="swiperTag" key={tag.id}>
+                    #{tag.title}
+                  </p>
+                ))}
+              </Box>
             </Box>
-            <Box className="swiperTagsDiv">
-              {track.tags.map((tag) => (
-                <p className="swiperTag" key={tag.id}>
-                  #{tag.title}
-                </p>
-              ))}
-            </Box>
-          </Box>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Box>
   );
 };
 
