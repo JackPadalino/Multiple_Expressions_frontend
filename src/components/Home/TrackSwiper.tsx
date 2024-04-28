@@ -33,7 +33,9 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
             <Box className="swiperTrackInfo">
               <h3>New featured track</h3>
               <Box className="swiperTrackTitlePlayDiv">
-                <h2 className="swiperTrackTitle">{track.title}</h2>
+                <Link className="swiperTrackLink" to={`/track/${track.id}`}>
+                  <h2 className="swiperTrackTitle">{track.title}</h2>
+                </Link>
                 <IconButton
                   onClick={() => handlePlay(track)}
                   sx={{ padding: "0px", margin: "0px" }}

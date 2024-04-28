@@ -1,21 +1,21 @@
 @media only screen and (max-width: 600px) {
   .trackPhoto {
-    width: 300px;
-    height: auto;
+    width: 330px;
+    height: 330px;
   }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
   .trackPhoto {
-    width: 300px;
-    height: auto;
+    width: 330px;
+    height: 330px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
   .trackPhoto {
-    width: 400px;
-    height: auto;
+    width: 450px;
+    height: 450px;
   }
 }
 

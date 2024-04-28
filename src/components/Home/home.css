@@ -167,6 +167,10 @@
   font-family: Coolvetica;
 }
 
+.swiperTrackLink {
+  text-decoration: none;
+}
+
 .swiperArtistInfoDiv {
   display: flex;
   flex-direction: column;
