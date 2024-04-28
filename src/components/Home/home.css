@@ -4,8 +4,8 @@
   }
 
   .swiperMainContainer {
-    width: 95%;
-    aspect-ratio: 1/1;
+    width: 300px;
+    height: 300px;
   }
 
   .swiper-button-next::after {
@@ -19,8 +19,8 @@
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
   .swiperMainContainer {
-    width: 50%;
-    aspect-ratio: 1/1;
+    width: 300px;
+    height: 300px;
   }
 
   .swiper-button-next::after {
@@ -34,8 +34,8 @@
 
 @media only screen and (min-width: 1280px) {
   .swiperMainContainer {
-    width: 33%;
-    aspect-ratio: 1/1;
+    width: 640px;
+    height: 640px;
   }
 
   .swiper-button-next::after {
@@ -131,6 +131,11 @@
   width: 100%;
   height: 100%;
 }
+
+/* .swiper-slide {
+  display: flex;
+  position: relative;
+} */
 
 .swiper-pagination {
   position: unset;
