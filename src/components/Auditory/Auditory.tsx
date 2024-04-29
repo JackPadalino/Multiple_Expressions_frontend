@@ -24,9 +24,6 @@ const Auditory = () => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  // search variables
-  // const [searchValue, setSearchValue] = useState<string>("");
-
   const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
@@ -52,20 +49,6 @@ const Auditory = () => {
       setFilteredTracks(tracks);
     }
   };
-
-  // const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   const tracks = storeTracks.filter(
-  //     (track) =>
-  //       track.title.toLowerCase() === searchValue ||
-  //       track.artists
-  //         .map((artist) => artist.name.toLowerCase())
-  //         .includes(searchValue) ||
-  //       track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
-  //   );
-  //   setFilteredTracks(tracks);
-  //   setSearchValue("");
-  // };
 
   useEffect(() => {
     setFilteredTracks(storeTracks);
