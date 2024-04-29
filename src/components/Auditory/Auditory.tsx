@@ -27,7 +27,7 @@ const Auditory = () => {
   // search variables
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const handleChange = (event: ChangeEvent<unknown>, value: number) => {
+  const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
 
@@ -58,7 +58,6 @@ const Auditory = () => {
   return (
     <>
       <Box className="auditoryMainContainer">
-        {/* <Filters /> */}
         <Box className="filtersContainer">
           <form onSubmit={handleSearch}>
             <input
@@ -83,7 +82,7 @@ const Auditory = () => {
             storeTracks={storeTracks}
             postsPerPage={postsPerPage}
             currentPage={currentPage}
-            handleChange={handleChange}
+            handlePageChange={handlePageChange}
           />
         </Box>
       </Box>

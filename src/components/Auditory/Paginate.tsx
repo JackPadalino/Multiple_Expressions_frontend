@@ -7,21 +7,21 @@ interface PaginateProps {
   storeTracks: TrackInt[];
   postsPerPage: number;
   currentPage: number;
-  handleChange: (event: ChangeEvent<unknown>, page: number) => void;
+  handlePageChange: (event: ChangeEvent<unknown>, page: number) => void;
 }
 
 const Paginate = ({
   storeTracks,
   postsPerPage,
   currentPage,
-  handleChange,
+  handlePageChange,
 }: PaginateProps) => {
   return (
     <Stack spacing={2}>
       <Pagination
         count={Math.ceil(storeTracks.length / postsPerPage)}
         page={currentPage}
-        onChange={handleChange}
+        onChange={handlePageChange}
         shape="rounded"
         size="large"
         sx={{
