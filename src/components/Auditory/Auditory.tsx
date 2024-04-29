@@ -23,7 +23,6 @@ const Auditory = () => {
   const postsPerPage = 4;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentTracks = filteredTracks.slice(indexOfFirstPost, indexOfLastPost);
 
   // search variables
   // const [searchValue, setSearchValue] = useState<string>("");
@@ -91,13 +90,17 @@ const Auditory = () => {
             onChange={handleSeachChange}
           />
         </Box>
-        {/* <Box> */}
         <Box className="auditoryTracksDiv">
-          {currentTracks.map((track) => (
-            <SingleTrack key={track.id} track={track} handlePlay={handlePlay} />
-          ))}
+          {filteredTracks
+            .slice(indexOfFirstPost, indexOfLastPost)
+            .map((track) => (
+              <SingleTrack
+                key={track.id}
+                track={track}
+                handlePlay={handlePlay}
+              />
+            ))}
         </Box>
-        {/* </Box> */}
         <Box className="pagination">
           <Paginate
             filteredTracks={filteredTracks}
