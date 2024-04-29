@@ -16,13 +16,14 @@ import "./auditory.css";
 const Auditory = () => {
   const dispatch = useAppDispatch();
   const { storeTracks } = useAppSelector((state) => state.music);
+  const [filteredTracks, setFilteredTracks] = useState<TrackInt[]>(storeTracks);
 
   // pagiation variables
   const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 4;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentTracks = storeTracks.slice(indexOfFirstPost, indexOfLastPost);
+  const currentTracks = filteredTracks.slice(indexOfFirstPost, indexOfLastPost);
 
   // search variables
   const [searchValue, setSearchValue] = useState<string>("");
@@ -42,7 +43,7 @@ const Auditory = () => {
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const filteredTracks = storeTracks.filter(
+    const tracks = storeTracks.filter(
       (track) =>
         track.title.toLowerCase() === searchValue ||
         track.artists
@@ -50,9 +51,11 @@ const Auditory = () => {
           .includes(searchValue) ||
         track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
     );
-    console.log(filteredTracks);
+    setFilteredTracks(tracks);
     setSearchValue("");
   };
+
+  console.log(filteredTracks);
 
   if (Object.keys(storeTracks).length == 0) return null;
   return (
