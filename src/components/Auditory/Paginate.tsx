@@ -4,14 +4,14 @@ import "./auditory.css";
 import { ChangeEvent } from "react";
 
 interface PaginateProps {
-  storeTracks: TrackInt[];
+  filteredTracks: TrackInt[];
   postsPerPage: number;
   currentPage: number;
   handlePageChange: (event: ChangeEvent<unknown>, page: number) => void;
 }
 
 const Paginate = ({
-  storeTracks,
+  filteredTracks,
   postsPerPage,
   currentPage,
   handlePageChange,
@@ -19,7 +19,7 @@ const Paginate = ({
   return (
     <Stack spacing={2}>
       <Pagination
-        count={Math.ceil(storeTracks.length / postsPerPage)}
+        count={Math.ceil(filteredTracks.length / postsPerPage)}
         page={currentPage}
         onChange={handlePageChange}
         shape="rounded"

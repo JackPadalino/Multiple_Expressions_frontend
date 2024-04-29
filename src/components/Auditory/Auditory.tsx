@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { Box } from "@mui/material";
 
@@ -26,7 +26,7 @@ const Auditory = () => {
   const currentTracks = filteredTracks.slice(indexOfFirstPost, indexOfLastPost);
 
   // search variables
-  const [searchValue, setSearchValue] = useState<string>("");
+  // const [searchValue, setSearchValue] = useState<string>("");
 
   const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
@@ -38,40 +38,58 @@ const Auditory = () => {
   };
 
   const handleSeachChange = (e: FormEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value.toLowerCase());
+    const searchValue = e.currentTarget.value.toLowerCase().trim();
+    if (searchValue === "") {
+      setFilteredTracks(storeTracks);
+    } else {
+      const tracks = storeTracks.filter(
+        (track) =>
+          track.title.toLowerCase() === searchValue ||
+          track.artists
+            .map((artist) => artist.name.toLowerCase())
+            .includes(searchValue) ||
+          track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
+      );
+      setFilteredTracks(tracks);
+    }
   };
 
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const tracks = storeTracks.filter(
-      (track) =>
-        track.title.toLowerCase() === searchValue ||
-        track.artists
-          .map((artist) => artist.name.toLowerCase())
-          .includes(searchValue) ||
-        track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
-    );
-    setFilteredTracks(tracks);
-    setSearchValue("");
-  };
+  // const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const tracks = storeTracks.filter(
+  //     (track) =>
+  //       track.title.toLowerCase() === searchValue ||
+  //       track.artists
+  //         .map((artist) => artist.name.toLowerCase())
+  //         .includes(searchValue) ||
+  //       track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
+  //   );
+  //   setFilteredTracks(tracks);
+  //   setSearchValue("");
+  // };
 
-  console.log(filteredTracks);
+  useEffect(() => {
+    setFilteredTracks(storeTracks);
+  }, [storeTracks]);
 
   if (Object.keys(storeTracks).length == 0) return null;
   return (
     <>
       <Box className="auditoryMainContainer">
         <Box className="filtersContainer">
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="Search artists/tracks/tags"
-              style={{ color: "black" }}
-              value={searchValue}
-              onChange={handleSeachChange}
-            />
-            <input type="submit" value="Search" style={{ color: "black" }} />
-          </form>
+          <input
+            type="text"
+            placeholder="Search artists, tracks, tags..."
+            style={{
+              color: "black",
+              width: "200px",
+              borderRadius: "3px",
+              paddingLeft: "5px",
+              height: "25px",
+              border: "none",
+            }}
+            onChange={handleSeachChange}
+          />
         </Box>
         {/* <Box> */}
         <Box className="auditoryTracksDiv">
@@ -82,7 +100,7 @@ const Auditory = () => {
         {/* </Box> */}
         <Box className="pagination">
           <Paginate
-            storeTracks={storeTracks}
+            filteredTracks={filteredTracks}
             postsPerPage={postsPerPage}
             currentPage={currentPage}
             handlePageChange={handlePageChange}
