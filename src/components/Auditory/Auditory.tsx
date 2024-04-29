@@ -38,24 +38,27 @@ const Auditory = () => {
     if (searchValue === "") {
       setFilteredTracks(storeTracks);
     } else {
-      const tracks = storeTracks.filter(
+      //~~~~~search function - explicit match~~~~~//
+      // const tracks = storeTracks.filter(
+      //   (track) =>
+      //     track.title.toLowerCase().includes(searchValue) ||
+      //     track.artists
+      //       .map((artist) => artist.name.toLowerCase())
+      //       .includes(searchValue) ||
+      //     track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
+      // );
+      //~~~~~search function - dynamic substring search~~~~~//
+      const tracks2 = storeTracks.filter(
         (track) =>
           track.title.toLowerCase().includes(searchValue) ||
-          track.artists
-            .map((artist) => artist.name.toLowerCase())
-            .includes(searchValue) ||
-          track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
+          track.artists.some((artist) =>
+            artist.name.toLowerCase().includes(searchValue)
+          ) ||
+          track.tags.some((tag) =>
+            tag.title.toLowerCase().includes(searchValue)
+          )
       );
-      // const tracks: TrackInt[] = [];
-      // storeTracks.forEach((track) => {
-      //   if (track.title.toLowerCase().includes(searchValue)) tracks.push(track);
-      //   for (const artist of track.artists) {
-      //     if (artist.name.toLowerCase().includes(searchValue)) {
-      //       tracks.push(track);
-      //     }
-      //   }
-      // });
-      setFilteredTracks(tracks);
+      setFilteredTracks(tracks2);
     }
   };
 
