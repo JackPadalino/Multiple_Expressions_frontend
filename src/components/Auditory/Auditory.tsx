@@ -41,19 +41,25 @@ const Auditory = () => {
       //~~~~~search function - explicit match~~~~~//
       // const tracks = storeTracks.filter(
       //   (track) =>
+      //     // searching for character/substring match in track title
       //     track.title.toLowerCase().includes(searchValue) ||
+      //     // searching for character/substring match in artist names
       //     track.artists
       //       .map((artist) => artist.name.toLowerCase())
       //       .includes(searchValue) ||
+      //     // searching for character/substring match in track tags
       //     track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
       // );
-      //~~~~~search function - dynamic substring search~~~~~//
+      //~~~~~search function -  character/substring search~~~~~//
       const tracks2 = storeTracks.filter(
         (track) =>
+          // searching for character/substring match in track title
           track.title.toLowerCase().includes(searchValue) ||
+          // searching for character/substring match in artist names
           track.artists.some((artist) =>
             artist.name.toLowerCase().includes(searchValue)
           ) ||
+          // searching for character/substring match in track tags
           track.tags.some((tag) =>
             tag.title.toLowerCase().includes(searchValue)
           )
