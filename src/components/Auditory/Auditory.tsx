@@ -78,16 +78,9 @@ const Auditory = () => {
       <Box className="auditoryMainContainer">
         <Box className="filtersContainer">
           <input
+            className="filterSearch"
             type="text"
             placeholder="Search artists, tracks, tags..."
-            style={{
-              color: "black",
-              width: "200px",
-              borderRadius: "3px",
-              paddingLeft: "5px",
-              height: "25px",
-              border: "none",
-            }}
             onChange={handleSeachChange}
           />
         </Box>
