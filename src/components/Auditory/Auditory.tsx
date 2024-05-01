@@ -83,6 +83,15 @@ const Auditory = () => {
             placeholder="Search artists, tracks, tags..."
             onChange={handleSeachChange}
           />
+          <select className="filterSelect">
+            <option value="" selected disabled hidden>
+              Sort
+            </option>
+            <option value="0">Most recent</option>
+            <option value="1">Least recent</option>
+            <option value="2">A-Z</option>
+            <option value="3">Z-A</option>
+          </select>
         </Box>
         <Box className="auditoryTracksDiv">
           {filteredTracks
