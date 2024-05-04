@@ -68,6 +68,20 @@ const Auditory = () => {
     }
   };
 
+  // sort change handler - will need to make some kind of
+  // custom sorting function to sort tracks by title and
+  // artist name
+  const handleSortChange = (e: FormEvent<HTMLSelectElement>) => {
+    const sortValue = e.currentTarget.value;
+    const sortedTracks = [...storeTracks];
+    console.log(typeof sortValue);
+    if (sortValue === "0") {
+      console.log(sortedTracks);
+    } else {
+      console.log(sortedTracks.reverse());
+    }
+  };
+
   useEffect(() => {
     setFilteredTracks(storeTracks);
   }, [storeTracks]);
@@ -83,14 +97,18 @@ const Auditory = () => {
             placeholder="Search artists, tracks, tags..."
             onChange={handleSeachChange}
           />
-          <select className="filterSelect">
-            <option value="" selected disabled hidden>
-              Sort
-            </option>
+          <select
+            defaultValue={"default"}
+            className="filterSort"
+            onChange={handleSortChange}
+          >
+            <option value="default">Sort</option>
             <option value="0">Most recent</option>
             <option value="1">Least recent</option>
-            <option value="2">A-Z</option>
-            <option value="3">Z-A</option>
+            <option value="2">Artists A-Z</option>
+            <option value="3">Artists Z-A</option>
+            <option value="4">Tracks A-Z</option>
+            <option value="5">Tracks Z-A</option>
           </select>
         </Box>
         <Box className="auditoryTracksDiv">
