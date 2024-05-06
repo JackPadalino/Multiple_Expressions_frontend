@@ -68,6 +68,25 @@ const Auditory = () => {
     }
   };
 
+  // custom sort function
+  const customSort = (arr: TrackInt[], sortOption: string) => {
+    arr.sort((a, b) => {
+      if (sortOption === "1") {
+        return 0; // no sorting needed, return 0
+      } else if (sortOption === "2") {
+        return 0; // no sorting needed, return 0
+      } else if (sortOption === "3") {
+        return a.artists[0].name.localeCompare(b.artists[0].name);
+      } else if (sortOption === "4") {
+        return b.artists[0].name.localeCompare(a.artists[0].name);
+      } else if (sortOption === "5") {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    });
+  };
+
   // sort change handler - will need to make some kind of
   // custom sorting function to sort tracks by title and
   // artist name
