@@ -74,7 +74,6 @@ const Auditory = () => {
   const handleSortChange = (e: FormEvent<HTMLSelectElement>) => {
     const sortValue = e.currentTarget.value;
     const sortedTracks = [...storeTracks];
-    console.log(typeof sortValue);
     if (sortValue === "0") {
       console.log(sortedTracks);
     } else {
