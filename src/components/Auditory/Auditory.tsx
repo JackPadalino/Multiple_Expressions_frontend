@@ -71,15 +71,11 @@ const Auditory = () => {
   // custom sort function
   const customSort = (arr: TrackInt[], sortOption: string) => {
     arr.sort((a, b) => {
-      if (sortOption === "1") {
-        return 0; // no sorting needed, return 0
-      } else if (sortOption === "2") {
-        return 0; // no sorting needed, return 0
-      } else if (sortOption === "3") {
+      if (sortOption === "2") {
         return a.artists[0].name.localeCompare(b.artists[0].name);
-      } else if (sortOption === "4") {
+      } else if (sortOption === "3") {
         return b.artists[0].name.localeCompare(a.artists[0].name);
-      } else if (sortOption === "5") {
+      } else if (sortOption === "4") {
         return a.title.localeCompare(b.title);
       } else {
         return b.title.localeCompare(a.title);
@@ -91,12 +87,14 @@ const Auditory = () => {
   // custom sorting function to sort tracks by title and
   // artist name
   const handleSortChange = (e: FormEvent<HTMLSelectElement>) => {
-    const sortValue = e.currentTarget.value;
+    const sortOption = e.currentTarget.value;
     const sortedTracks = [...storeTracks];
-    if (sortValue === "0") {
+    if (sortOption === "0") {
       console.log(sortedTracks);
-    } else {
+    } else if (sortOption === "1") {
       console.log(sortedTracks.reverse());
+    } else {
+      console.log(customSort(sortedTracks, sortOption));
     }
   };
 
