@@ -1,20 +1,21 @@
-interface Person {
-  name: string;
-  age: number;
-}
+// const person1 = { name: "Jack", age: 36 };
+// const person2 = { name: "Madelyn", age: 34 };
 
-const person1: Person = { name: "Jack", age: 36 };
-const person2: Person = { name: "Jasmine", age: 33 };
+// const people = [person1, person2];
 
-const people: Person[] = [person1, person2];
+// function customSort(arr, option) {
+//   arr.sort((a, b) => {
+//     if (option === 1) {
+//       return a.age - b.age;
+//     } else if (option === 2) {
+//       return b.age - a.age;
+//     } else if (option === 3) {
+//       return a.name.localeCompare(b.name);
+//     } else {
+//       return b.name.localeCompare(a.name);
+//     }
+//   });
+// }
 
-function sortByAge(arr: Person[]) {
-  // Custom sort function to sort by age
-  arr.sort((a, b) => {
-    return a.age - b.age;
-  });
-}
-
-sortByAge(people);
-
-console.log(people); // Output will be sorted by age
+// customSort(people, 4);
+// console.log(people);
