@@ -70,7 +70,7 @@ const Auditory = () => {
 
   // custom sort function
   const customSort = (arr: TrackInt[], sortOption: string) => {
-    arr.sort((a, b) => {
+    return arr.sort((a, b) => {
       if (sortOption === "2") {
         return a.artists[0].name.localeCompare(b.artists[0].name);
       } else if (sortOption === "3") {
@@ -88,13 +88,13 @@ const Auditory = () => {
   // artist name
   const handleSortChange = (e: FormEvent<HTMLSelectElement>) => {
     const sortOption = e.currentTarget.value;
-    const sortedTracks = [...storeTracks];
+    const sortedTracks = [...filteredTracks];
     if (sortOption === "0") {
-      console.log(sortedTracks);
+      setFilteredTracks(sortedTracks);
     } else if (sortOption === "1") {
-      console.log(sortedTracks.reverse());
+      setFilteredTracks(sortedTracks.reverse());
     } else {
-      console.log(customSort(sortedTracks, sortOption));
+      setFilteredTracks(customSort(sortedTracks, sortOption));
     }
   };
 
