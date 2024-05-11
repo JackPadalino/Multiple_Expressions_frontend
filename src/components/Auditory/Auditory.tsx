@@ -16,7 +16,7 @@ import "./auditory.css";
 const Auditory = () => {
   const dispatch = useAppDispatch();
   const { storeTracks } = useAppSelector((state) => state.music);
-  const [filteredTracks, setFilteredTracks] = useState<TrackInt[]>(storeTracks);
+  const [auditoryTracks, setAuditoryTracks] = useState<TrackInt[]>([]);
 
   // pagiation variables
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -36,7 +36,7 @@ const Auditory = () => {
   const handleSeachChange = (e: FormEvent<HTMLInputElement>) => {
     const searchValue = e.currentTarget.value.toLowerCase().trim();
     if (searchValue === "") {
-      setFilteredTracks(storeTracks);
+      setAuditoryTracks(storeTracks);
     } else {
       //~~~~~search function - explicit match~~~~~//
       // const tracks = storeTracks.filter(
@@ -64,7 +64,7 @@ const Auditory = () => {
             tag.title.toLowerCase().includes(searchValue)
           )
       );
-      setFilteredTracks(tracks2);
+      setAuditoryTracks(tracks2);
     }
   };
 
@@ -90,19 +90,19 @@ const Auditory = () => {
     const sortOption = e.currentTarget.value;
     const sortedTracks = [...storeTracks];
     if (sortOption === "default" || sortOption === "0") {
-      setFilteredTracks(sortedTracks);
+      setAuditoryTracks(sortedTracks);
     } else if (sortOption === "1") {
-      setFilteredTracks(sortedTracks.reverse());
+      setAuditoryTracks(sortedTracks.reverse());
     } else {
-      setFilteredTracks(customSort(sortedTracks, sortOption));
+      setAuditoryTracks(customSort(sortedTracks, sortOption));
     }
   };
 
   useEffect(() => {
-    setFilteredTracks(storeTracks);
+    setAuditoryTracks(storeTracks);
   }, [storeTracks]);
 
-  if (Object.keys(storeTracks).length == 0) return null;
+  if (Object.keys(auditoryTracks).length == 0) return null;
   return (
     <>
       <Box className="auditoryMainContainer">
@@ -128,7 +128,7 @@ const Auditory = () => {
           </select>
         </Box>
         <Box className="auditoryTracksDiv">
-          {filteredTracks
+          {auditoryTracks
             .slice(indexOfFirstPost, indexOfLastPost)
             .map((track) => (
               <SingleTrack
@@ -140,7 +140,7 @@ const Auditory = () => {
         </Box>
         <Box className="pagination">
           <Paginate
-            filteredTracks={filteredTracks}
+            filteredTracks={auditoryTracks}
             postsPerPage={postsPerPage}
             currentPage={currentPage}
             handlePageChange={handlePageChange}
