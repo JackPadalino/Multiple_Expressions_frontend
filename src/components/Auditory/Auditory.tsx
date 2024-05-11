@@ -88,8 +88,8 @@ const Auditory = () => {
   // artist name
   const handleSortChange = (e: FormEvent<HTMLSelectElement>) => {
     const sortOption = e.currentTarget.value;
-    const sortedTracks = [...filteredTracks];
-    if (sortOption === "0") {
+    const sortedTracks = [...storeTracks];
+    if (sortOption === "default" || sortOption === "0") {
       setFilteredTracks(sortedTracks);
     } else if (sortOption === "1") {
       setFilteredTracks(sortedTracks.reverse());
