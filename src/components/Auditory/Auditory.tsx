@@ -17,6 +17,8 @@ const Auditory = () => {
   const dispatch = useAppDispatch();
   const { storeTracks } = useAppSelector((state) => state.music);
   const [auditoryTracks, setAuditoryTracks] = useState<TrackInt[]>([]);
+  const [searchCriteria, setSearchCriteria] = useState<string>("");
+  const [sortCriteria, setSortCriteria] = useState<string>("");
 
   // pagiation variables
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -33,10 +35,36 @@ const Auditory = () => {
     dispatch(setStoreWaveformTrack(track));
   };
 
+  const newHandleSearchChange = (e: FormEvent<HTMLInputElement>) => {
+    setSearchCriteria(e.currentTarget.value.toLocaleLowerCase().trimEnd());
+  };
+
+  const newHandleSortChange = (e: FormEvent<HTMLSelectElement>) => {
+    setSortCriteria(e.currentTarget.value);
+  };
+
+  let searchedData;
+  if (searchCriteria !== "") {
+    searchedData = auditoryTracks.filter(
+      (track) =>
+        // searching for character/substring match in track title
+        track.title.toLowerCase().includes(searchCriteria) ||
+        // searching for character/substring match in artist names
+        track.artists.some((artist) =>
+          artist.name.toLowerCase().includes(searchCriteria)
+        ) ||
+        // searching for character/substring match in track tags
+        track.tags.some((tag) =>
+          tag.title.toLowerCase().includes(searchCriteria)
+        )
+    );
+  }
+
   const handleSeachChange = (e: FormEvent<HTMLInputElement>) => {
     const searchValue = e.currentTarget.value.toLowerCase().trim();
     if (searchValue === "") {
-      setAuditoryTracks(storeTracks);
+      // setAuditoryTracks(storeTracks);
+      // pass
     } else {
       //~~~~~search function - explicit match~~~~~//
       // const tracks = storeTracks.filter(
@@ -111,12 +139,12 @@ const Auditory = () => {
             className="filterSearch"
             type="text"
             placeholder="Search artists, tracks, tags..."
-            onChange={handleSeachChange}
+            onChange={newHandleSearchChange}
           />
           <select
             defaultValue={"default"}
             className="filterSort"
-            onChange={handleSortChange}
+            onChange={newHandleSortChange}
           >
             <option value="default">Sort</option>
             <option value="0">Most recent</option>
