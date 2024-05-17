@@ -60,6 +60,19 @@ const Auditory = () => {
     );
   }
 
+  // Function to sort data based on sort criteria
+  // let sortedData;
+  // if (sortCriteria === "default" || sortCriteria === "0") {
+  //   sortedData = searchedData
+  // } else if (sortCriteria === "1") {
+  //   sortedData = searchedData?.reverse();
+  // }d
+  // const sortedData = sortCriteria
+  //   ? [...filteredData].sort((a, b) =>
+  //       a[sortCriteria] > b[sortCriteria] ? 1 : -1
+  //     )
+  //   : filteredData;
+
   const handleSeachChange = (e: FormEvent<HTMLInputElement>) => {
     const searchValue = e.currentTarget.value.toLowerCase().trim();
     if (searchValue === "") {
