@@ -17,10 +17,12 @@ const Auditory = () => {
   const dispatch = useAppDispatch();
   const { storeTracks } = useAppSelector((state) => state.music);
   const [auditoryTracks, setAuditoryTracks] = useState<TrackInt[]>([]);
+
+  // sorting and searching state variables
   const [searchCriteria, setSearchCriteria] = useState<string>("");
   const [sortCriteria, setSortCriteria] = useState<string>("");
 
-  // pagiation variables
+  // pagiation state variables
   const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 4;
   const indexOfLastPost = currentPage * postsPerPage;
@@ -35,11 +37,11 @@ const Auditory = () => {
     dispatch(setStoreWaveformTrack(track));
   };
 
-  const newHandleSearchChange = (e: FormEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: FormEvent<HTMLInputElement>) => {
     setSearchCriteria(e.currentTarget.value.toLocaleLowerCase().trimEnd());
   };
 
-  const newHandleSortChange = (e: FormEvent<HTMLSelectElement>) => {
+  const handleSortChange = (e: FormEvent<HTMLSelectElement>) => {
     setSortCriteria(e.currentTarget.value);
   };
 
@@ -62,11 +64,8 @@ const Auditory = () => {
     searchedTracks = auditoryTracks;
   }
 
-  // Function to sort data based on sort criteria
-
-  // LEFT OFF HERE //
-  // custom sort function
-  const newCustomSort = (arr: TrackInt[], sortCriteria: string) => {
+  // custom sort function to sort data based on sort criteri
+  const customSort = (arr: TrackInt[], sortCriteria: string) => {
     return arr.sort((a, b) => {
       if (sortCriteria === "2") {
         return a.artists[0].name.localeCompare(b.artists[0].name);
@@ -80,82 +79,80 @@ const Auditory = () => {
     });
   };
 
-  // NEXT STEP IS TO IMPLEMENT ENTIRE SORTING FUNCTION //
-  // DISPLAY SEARCHED/SORTED TRACKS -> DISPLAY THE ARRAY 'sortedTracks' //
-  let sortedTracks = searchedTracks;
+  let sortedTracks = [...searchedTracks];
   if (sortCriteria === "" || sortCriteria === "0") {
     // pass
   } else if (sortCriteria === "1") {
     sortedTracks = sortedTracks.reverse();
   } else {
-    newCustomSort(sortedTracks, sortCriteria);
+    customSort(sortedTracks, sortCriteria);
   }
 
-  const handleSeachChange = (e: FormEvent<HTMLInputElement>) => {
-    const searchValue = e.currentTarget.value.toLowerCase().trim();
-    if (searchValue === "") {
-      // setAuditoryTracks(storeTracks);
-      // pass
-    } else {
-      //~~~~~search function - explicit match~~~~~//
-      // const tracks = storeTracks.filter(
-      //   (track) =>
-      //     // searching for character/substring match in track title
-      //     track.title.toLowerCase().includes(searchValue) ||
-      //     // searching for character/substring match in artist names
-      //     track.artists
-      //       .map((artist) => artist.name.toLowerCase())
-      //       .includes(searchValue) ||
-      //     // searching for character/substring match in track tags
-      //     track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
-      // );
-      //~~~~~search function -  character/substring search~~~~~//
-      const tracks2 = storeTracks.filter(
-        (track) =>
-          // searching for character/substring match in track title
-          track.title.toLowerCase().includes(searchValue) ||
-          // searching for character/substring match in artist names
-          track.artists.some((artist) =>
-            artist.name.toLowerCase().includes(searchValue)
-          ) ||
-          // searching for character/substring match in track tags
-          track.tags.some((tag) =>
-            tag.title.toLowerCase().includes(searchValue)
-          )
-      );
-      setAuditoryTracks(tracks2);
-    }
-  };
+  // const oldHandleSeachChange = (e: FormEvent<HTMLInputElement>) => {
+  //   const searchValue = e.currentTarget.value.toLowerCase().trim();
+  //   if (searchValue === "") {
+  //     // setAuditoryTracks(storeTracks);
+  //     // pass
+  //   } else {
+  //     //~~~~~search function - explicit match~~~~~//
+  //     // const tracks = storeTracks.filter(
+  //     //   (track) =>
+  //     //     // searching for character/substring match in track title
+  //     //     track.title.toLowerCase().includes(searchValue) ||
+  //     //     // searching for character/substring match in artist names
+  //     //     track.artists
+  //     //       .map((artist) => artist.name.toLowerCase())
+  //     //       .includes(searchValue) ||
+  //     //     // searching for character/substring match in track tags
+  //     //     track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
+  //     // );
+  //     //~~~~~search function -  character/substring search~~~~~//
+  //     const tracks2 = storeTracks.filter(
+  //       (track) =>
+  //         // searching for character/substring match in track title
+  //         track.title.toLowerCase().includes(searchValue) ||
+  //         // searching for character/substring match in artist names
+  //         track.artists.some((artist) =>
+  //           artist.name.toLowerCase().includes(searchValue)
+  //         ) ||
+  //         // searching for character/substring match in track tags
+  //         track.tags.some((tag) =>
+  //           tag.title.toLowerCase().includes(searchValue)
+  //         )
+  //     );
+  //     setAuditoryTracks(tracks2);
+  //   }
+  // };
 
-  // custom sort function
-  const customSort = (arr: TrackInt[], sortOption: string) => {
-    return arr.sort((a, b) => {
-      if (sortOption === "2") {
-        return a.artists[0].name.localeCompare(b.artists[0].name);
-      } else if (sortOption === "3") {
-        return b.artists[0].name.localeCompare(a.artists[0].name);
-      } else if (sortOption === "4") {
-        return a.title.localeCompare(b.title);
-      } else {
-        return b.title.localeCompare(a.title);
-      }
-    });
-  };
+  // old custom sort function
+  // const oldCustomSort = (arr: TrackInt[], sortOption: string) => {
+  //   return arr.sort((a, b) => {
+  //     if (sortOption === "2") {
+  //       return a.artists[0].name.localeCompare(b.artists[0].name);
+  //     } else if (sortOption === "3") {
+  //       return b.artists[0].name.localeCompare(a.artists[0].name);
+  //     } else if (sortOption === "4") {
+  //       return a.title.localeCompare(b.title);
+  //     } else {
+  //       return b.title.localeCompare(a.title);
+  //     }
+  //   });
+  // };
 
-  // sort change handler - will need to make some kind of
+  // old sort change handler - will need to make some kind of
   // custom sorting function to sort tracks by title and
   // artist name
-  const handleSortChange = (e: FormEvent<HTMLSelectElement>) => {
-    const sortOption = e.currentTarget.value;
-    const sortedTracks = [...storeTracks];
-    if (sortOption === "default" || sortOption === "0") {
-      setAuditoryTracks(sortedTracks);
-    } else if (sortOption === "1") {
-      setAuditoryTracks(sortedTracks.reverse());
-    } else {
-      setAuditoryTracks(customSort(sortedTracks, sortOption));
-    }
-  };
+  // const oldHandleSortChange = (e: FormEvent<HTMLSelectElement>) => {
+  //   const sortOption = e.currentTarget.value;
+  //   const sortedTracks = [...storeTracks];
+  //   if (sortOption === "default" || sortOption === "0") {
+  //     setAuditoryTracks(sortedTracks);
+  //   } else if (sortOption === "1") {
+  //     setAuditoryTracks(sortedTracks.reverse());
+  //   } else {
+  //     setAuditoryTracks(customSort(sortedTracks, sortOption));
+  //   }
+  // };
 
   useEffect(() => {
     setAuditoryTracks(storeTracks);
@@ -170,12 +167,12 @@ const Auditory = () => {
             className="filterSearch"
             type="text"
             placeholder="Search artists, tracks, tags..."
-            onChange={newHandleSearchChange}
+            onChange={handleSearchChange}
           />
           <select
             defaultValue={""}
             className="filterSort"
-            onChange={newHandleSortChange}
+            onChange={handleSortChange}
           >
             <option value="">Sort</option>
             <option value="0">Most recent</option>
