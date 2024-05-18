@@ -43,9 +43,9 @@ const Auditory = () => {
     setSortCriteria(e.currentTarget.value);
   };
 
-  let searchedData;
+  let searchedTracks;
   if (searchCriteria !== "") {
-    searchedData = auditoryTracks.filter(
+    searchedTracks = auditoryTracks.filter(
       (track) =>
         // searching for character/substring match in track title
         track.title.toLowerCase().includes(searchCriteria) ||
@@ -58,20 +58,19 @@ const Auditory = () => {
           tag.title.toLowerCase().includes(searchCriteria)
         )
     );
+  } else {
+    searchedTracks = auditoryTracks;
   }
 
   // Function to sort data based on sort criteria
-  // let sortedData;
-  // if (sortCriteria === "default" || sortCriteria === "0") {
-  //   sortedData = searchedData
-  // } else if (sortCriteria === "1") {
-  //   sortedData = searchedData?.reverse();
-  // }d
-  // const sortedData = sortCriteria
-  //   ? [...filteredData].sort((a, b) =>
-  //       a[sortCriteria] > b[sortCriteria] ? 1 : -1
-  //     )
-  //   : filteredData;
+
+  // LEFT OFF HERE //
+  // NEXT STEP IS TO IMPLEMENT ENTIRE SORTING FUNCTION //
+  // DISPLAY SEARCHED/SORTED TRACKS -> DISPLAY THE ARRAY 'sortedTracks' //
+  let sortedTracks;
+  if (sortCriteria === "" || sortCriteria === "0") {
+    sortedTracks = searchedTracks;
+  }
 
   const handleSeachChange = (e: FormEvent<HTMLInputElement>) => {
     const searchValue = e.currentTarget.value.toLowerCase().trim();
@@ -155,11 +154,11 @@ const Auditory = () => {
             onChange={newHandleSearchChange}
           />
           <select
-            defaultValue={"default"}
+            defaultValue={""}
             className="filterSort"
             onChange={newHandleSortChange}
           >
-            <option value="default">Sort</option>
+            <option value="">Sort</option>
             <option value="0">Most recent</option>
             <option value="1">Least recent</option>
             <option value="2">Artists A-Z</option>
