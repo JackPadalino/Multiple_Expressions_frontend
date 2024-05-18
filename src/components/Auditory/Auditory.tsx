@@ -65,11 +65,30 @@ const Auditory = () => {
   // Function to sort data based on sort criteria
 
   // LEFT OFF HERE //
+  // custom sort function
+  const newCustomSort = (arr: TrackInt[], sortCriteria: string) => {
+    return arr.sort((a, b) => {
+      if (sortCriteria === "2") {
+        return a.artists[0].name.localeCompare(b.artists[0].name);
+      } else if (sortCriteria === "3") {
+        return b.artists[0].name.localeCompare(a.artists[0].name);
+      } else if (sortCriteria === "4") {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    });
+  };
+
   // NEXT STEP IS TO IMPLEMENT ENTIRE SORTING FUNCTION //
   // DISPLAY SEARCHED/SORTED TRACKS -> DISPLAY THE ARRAY 'sortedTracks' //
-  let sortedTracks;
+  let sortedTracks = searchedTracks;
   if (sortCriteria === "" || sortCriteria === "0") {
-    sortedTracks = searchedTracks;
+    // pass
+  } else if (sortCriteria === "1") {
+    sortedTracks = sortedTracks.reverse();
+  } else {
+    newCustomSort(sortedTracks, sortCriteria);
   }
 
   const handleSeachChange = (e: FormEvent<HTMLInputElement>) => {
@@ -168,7 +187,7 @@ const Auditory = () => {
           </select>
         </Box>
         <Box className="auditoryTracksDiv">
-          {auditoryTracks
+          {sortedTracks
             .slice(indexOfFirstPost, indexOfLastPost)
             .map((track) => (
               <SingleTrack
