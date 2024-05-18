@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { Box } from "@mui/material";
 
@@ -16,7 +16,6 @@ import "./auditory.css";
 const Auditory = () => {
   const dispatch = useAppDispatch();
   const { storeTracks } = useAppSelector((state) => state.music);
-  const [auditoryTracks, setAuditoryTracks] = useState<TrackInt[]>([]);
 
   // sorting and searching state variables
   const [searchCriteria, setSearchCriteria] = useState<string>("");
@@ -47,7 +46,7 @@ const Auditory = () => {
 
   let searchedTracks;
   if (searchCriteria !== "") {
-    searchedTracks = auditoryTracks.filter(
+    searchedTracks = storeTracks.filter(
       (track) =>
         // searching for character/substring match in track title
         track.title.toLowerCase().includes(searchCriteria) ||
@@ -61,7 +60,7 @@ const Auditory = () => {
         )
     );
   } else {
-    searchedTracks = auditoryTracks;
+    searchedTracks = storeTracks;
   }
 
   // custom sort function to sort data based on sort criteri
@@ -88,77 +87,7 @@ const Auditory = () => {
     customSort(sortedTracks, sortCriteria);
   }
 
-  // const oldHandleSeachChange = (e: FormEvent<HTMLInputElement>) => {
-  //   const searchValue = e.currentTarget.value.toLowerCase().trim();
-  //   if (searchValue === "") {
-  //     // setAuditoryTracks(storeTracks);
-  //     // pass
-  //   } else {
-  //     //~~~~~search function - explicit match~~~~~//
-  //     // const tracks = storeTracks.filter(
-  //     //   (track) =>
-  //     //     // searching for character/substring match in track title
-  //     //     track.title.toLowerCase().includes(searchValue) ||
-  //     //     // searching for character/substring match in artist names
-  //     //     track.artists
-  //     //       .map((artist) => artist.name.toLowerCase())
-  //     //       .includes(searchValue) ||
-  //     //     // searching for character/substring match in track tags
-  //     //     track.tags.map((tag) => tag.title.toLowerCase()).includes(searchValue)
-  //     // );
-  //     //~~~~~search function -  character/substring search~~~~~//
-  //     const tracks2 = storeTracks.filter(
-  //       (track) =>
-  //         // searching for character/substring match in track title
-  //         track.title.toLowerCase().includes(searchValue) ||
-  //         // searching for character/substring match in artist names
-  //         track.artists.some((artist) =>
-  //           artist.name.toLowerCase().includes(searchValue)
-  //         ) ||
-  //         // searching for character/substring match in track tags
-  //         track.tags.some((tag) =>
-  //           tag.title.toLowerCase().includes(searchValue)
-  //         )
-  //     );
-  //     setAuditoryTracks(tracks2);
-  //   }
-  // };
-
-  // old custom sort function
-  // const oldCustomSort = (arr: TrackInt[], sortOption: string) => {
-  //   return arr.sort((a, b) => {
-  //     if (sortOption === "2") {
-  //       return a.artists[0].name.localeCompare(b.artists[0].name);
-  //     } else if (sortOption === "3") {
-  //       return b.artists[0].name.localeCompare(a.artists[0].name);
-  //     } else if (sortOption === "4") {
-  //       return a.title.localeCompare(b.title);
-  //     } else {
-  //       return b.title.localeCompare(a.title);
-  //     }
-  //   });
-  // };
-
-  // old sort change handler - will need to make some kind of
-  // custom sorting function to sort tracks by title and
-  // artist name
-  // const oldHandleSortChange = (e: FormEvent<HTMLSelectElement>) => {
-  //   const sortOption = e.currentTarget.value;
-  //   const sortedTracks = [...storeTracks];
-  //   if (sortOption === "default" || sortOption === "0") {
-  //     setAuditoryTracks(sortedTracks);
-  //   } else if (sortOption === "1") {
-  //     setAuditoryTracks(sortedTracks.reverse());
-  //   } else {
-  //     setAuditoryTracks(customSort(sortedTracks, sortOption));
-  //   }
-  // };
-
-  useEffect(() => {
-    setAuditoryTracks(storeTracks);
-  }, [storeTracks]);
-
-  if (Object.keys(auditoryTracks).length == 0) return null;
+  if (Object.keys(storeTracks).length == 0) return null;
   return (
     <>
       <Box className="auditoryMainContainer">
@@ -196,7 +125,7 @@ const Auditory = () => {
         </Box>
         <Box className="pagination">
           <Paginate
-            filteredTracks={auditoryTracks}
+            filteredTracks={searchedTracks}
             postsPerPage={postsPerPage}
             currentPage={currentPage}
             handlePageChange={handlePageChange}
