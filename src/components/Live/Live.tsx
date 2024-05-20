@@ -19,7 +19,7 @@ const Live = () => {
   theme.typography.h6 = {
     fontFamily: "Poppins",
     textAlign: "center",
-    fontSize: "10px", // font size for portrait and landscape views
+    fontSize: "9px", // font size for portrait and landscape views
     "@media (min-width:1280px)": {
       fontSize: "16px",
     },
@@ -90,9 +90,9 @@ const Live = () => {
           ></video>
 
           <Typography className="partyAnn" variant="h6">
-            Psst...don't miss the upcoming Multiple Expressions party happening
-            at <span className="partyAnnSpan">The Bar at Cafe Kitsune</span> on{" "}
-            <span className="partyAnnSpan">05.30.2024.</span>
+            Psst...we're having a party at{" "}
+            <span className="partyAnnSpan">Cafe Kitsune</span> on{" "}
+            <span className="partyAnnSpan">05.30.2024</span>!
           </Typography>
           <SocialIcon
             bgColor="black"
@@ -104,7 +104,22 @@ const Live = () => {
             Follow us to stay updated!
           </Typography>
         </Box>
+        {/* <Typography className="partyAnn" variant="h6">
+          Psst...we're having a party at{" "}
+          <span className="partyAnnSpan">Cafe Kitsune</span> on{" "}
+          <span className="partyAnnSpan">05.30.2024</span>!
+        </Typography>
+        <SocialIcon
+          bgColor="black"
+          network="instagram"
+          url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
+          target="_blank"
+        />
+        <Typography className="partyAnn" variant="h6">
+          Follow us to stay updated!
+        </Typography> */}
       </ThemeProvider>
+
       <Box className="chatContainer">
         <Chat isPlaying={isPlaying} />
       </Box>
