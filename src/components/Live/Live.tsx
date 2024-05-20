@@ -59,7 +59,7 @@ const Live = () => {
       <Box className="playerContainer">
         {!isPlaying && !hasEnded && (
           <p className="streamMsg">
-            Looks likes nothing is playing! Check back soon or refresh your
+            Looks like nothing is playing! Check back soon or refresh your
             browser.
           </p>
         )}
