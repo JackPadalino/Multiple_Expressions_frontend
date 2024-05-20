@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef, MouseEvent } from "react";
 import { useAppSelector } from "../../store/hooks";
 import WaveSurfer from "wavesurfer.js";
-import { Box } from "@mui/material";
+import { Box, duration } from "@mui/material";
 
 import MobileWaveformDrawer1 from "./MobileWaveformDrawer1";
 import MobileWaveformDrawer2 from "./MobileWaveformDrawer2";
 import { TrackInt } from "../../ints/ints";
 import "./mobileWaveform.css";
+import { TrendingUpRounded } from "@mui/icons-material";
 
 const MobileWaveform = () => {
   const [trackModalState, setTrackModalState] = useState<boolean>(false); // modal state
@@ -16,6 +17,9 @@ const MobileWaveform = () => {
 
   const waveformRef = useRef<HTMLDivElement | null>(null);
   const wavesurferRef = useRef<HTMLDivElement | null>(null);
+
+  // track "listens" state variables
+  const trackListen = useRef<boolean>(false);
 
   const { storeDisplayWaveform, storeWaveformTrack } = useAppSelector(
     (state) => state.waveform
@@ -58,9 +62,9 @@ const MobileWaveform = () => {
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("ready", () => {
         // @ts-expect-error: TS ignore error
-        const seconds = wavesurferRef.current.getDuration();
+        const durationSeconds = wavesurferRef.current.getDuration();
         // @ts-expect-error: TS ignore error
-        setTrackDuration(formatTime(seconds));
+        setTrackDuration(formatTime(durationSeconds));
         // @ts-expect-error: TS ignore error
         wavesurferRef.current.play();
       });
@@ -68,9 +72,15 @@ const MobileWaveform = () => {
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("audioprocess", () => {
         // @ts-expect-error: TS ignore error
-        const seconds = wavesurferRef.current.getCurrentTime();
+        const durationSeconds = wavesurferRef.current.getDuration();
         // @ts-expect-error: TS ignore error
-        setCurrentTime(formatTime(seconds));
+        const currentTimeSeconds = wavesurferRef.current.getCurrentTime();
+        // @ts-expect-error: TS ignore error
+        setCurrentTime(formatTime(currentTimeSeconds));
+        //logic for issue a new "listen"
+        if (currentTimeSeconds / durationSeconds > 0.1) {
+          trackListen.current = true;
+        }
       });
 
       // @ts-expect-error: TS ignore error
