@@ -2,6 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import Chat from "./Chat";
 import { Box, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+// React social Icons
+import { SocialIcon } from "react-social-icons/component";
+import "react-social-icons/instagram";
+
 import "./live.css";
 
 const Live = () => {
@@ -65,13 +70,6 @@ const Live = () => {
       <Box className="phantomContainer" />
       <ThemeProvider theme={theme}>
         <Box className="playerContainer">
-          <video
-            ref={videoPlayerRef}
-            className="player"
-            id="video-player"
-            playsInline
-            controls
-          ></video>
           {!isPlaying && !hasEnded && (
             <Typography variant="h6">
               Looks likes nothing is playing! Check back soon or refresh your
@@ -83,6 +81,28 @@ const Live = () => {
               Our live stream has ended. Thanks for coming!
             </Typography>
           )}
+          <video
+            ref={videoPlayerRef}
+            className="player"
+            id="video-player"
+            playsInline
+            controls
+          ></video>
+
+          <Typography className="partyAnn" variant="h6">
+            Psst...don't miss the upcoming Multiple Expressions party happening
+            at <span className="partyAnnSpan">The Bar at Cafe Kitsune</span> on{" "}
+            <span className="partyAnnSpan">05.30.2024.</span>
+          </Typography>
+          <SocialIcon
+            bgColor="black"
+            network="instagram"
+            url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
+            target="_blank"
+          />
+          <Typography className="partyAnn" variant="h6">
+            Follow us to stay updated!
+          </Typography>
         </Box>
       </ThemeProvider>
       <Box className="chatContainer">

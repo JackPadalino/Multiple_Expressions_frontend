@@ -57,8 +57,13 @@
 .playerContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .player {
   width: 100%;
+}
+
+.partyAnnSpan {
+  color: rgb(234, 162, 42);
 }
