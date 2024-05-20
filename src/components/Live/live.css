@@ -12,6 +12,12 @@
   .chatContainer {
     width: 90%;
   }
+  .streamMsg {
+    font-size: 10px;
+  }
+  .partyAnn {
+    font-size: 10px;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
@@ -27,6 +33,12 @@
   }
   .chatContainer {
     display: none;
+  }
+  .streamMsg {
+    font-size: 10px;
+  }
+  .partyAnn {
+    font-size: 10px;
   }
 }
 
@@ -54,6 +66,10 @@
   padding-bottom: 122px;
 }
 
+.streamMsg {
+  text-align: center;
+}
+
 .playerContainer {
   display: flex;
   flex-direction: column;
@@ -62,6 +78,10 @@
 
 .player {
   width: 100%;
+}
+
+.partyAnn {
+  text-align: center;
 }
 
 .partyAnnSpan {

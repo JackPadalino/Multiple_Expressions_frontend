@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Chat from "./Chat";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // React social Icons
@@ -71,15 +71,22 @@ const Live = () => {
       <ThemeProvider theme={theme}>
         <Box className="playerContainer">
           {!isPlaying && !hasEnded && (
-            <Typography variant="h6">
+            // <Typography variant="h6">
+            //   Looks likes nothing is playing! Check back soon or refresh your
+            //   browser.
+            // </Typography>
+            <p className="streamMsg">
               Looks likes nothing is playing! Check back soon or refresh your
               browser.
-            </Typography>
+            </p>
           )}
           {hasEnded && (
-            <Typography variant="h6">
+            // <Typography variant="h6">
+            //   Our live stream has ended. Thanks for coming!
+            // </Typography>
+            <p className="streamMsg">
               Our live stream has ended. Thanks for coming!
-            </Typography>
+            </p>
           )}
           <video
             ref={videoPlayerRef}
@@ -88,36 +95,19 @@ const Live = () => {
             playsInline
             controls
           ></video>
-
-          <Typography className="partyAnn" variant="h6">
+          <p className="partyAnn">
             Psst...we're having a party at{" "}
             <span className="partyAnnSpan">Cafe Kitsune</span> on{" "}
             <span className="partyAnnSpan">05.30.2024</span>!
-          </Typography>
+          </p>
           <SocialIcon
             bgColor="black"
             network="instagram"
             url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
             target="_blank"
           />
-          <Typography className="partyAnn" variant="h6">
-            Follow us to stay updated!
-          </Typography>
+          <p className="partyAnn">Follow us to stay updated!</p>
         </Box>
-        {/* <Typography className="partyAnn" variant="h6">
-          Psst...we're having a party at{" "}
-          <span className="partyAnnSpan">Cafe Kitsune</span> on{" "}
-          <span className="partyAnnSpan">05.30.2024</span>!
-        </Typography>
-        <SocialIcon
-          bgColor="black"
-          network="instagram"
-          url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
-          target="_blank"
-        />
-        <Typography className="partyAnn" variant="h6">
-          Follow us to stay updated!
-        </Typography> */}
       </ThemeProvider>
 
       <Box className="chatContainer">

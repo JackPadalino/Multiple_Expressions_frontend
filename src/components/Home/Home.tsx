@@ -47,7 +47,7 @@ const Home = () => {
       </Box>
       <p className="disclaimer">
         Mutliple Expressions does not own or claim to own any of the music
-        posted on this platform and will use any posted material for profit.
+        posted on this platform and will not use any posted material for profit.
         Please email us at{" "}
         <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>{" "}
         with any copyright issues.
