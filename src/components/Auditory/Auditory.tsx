@@ -27,10 +27,6 @@ const Auditory = () => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
-  };
-
   const handlePlay = (track: TrackInt) => {
     dispatch(setStoreDisplayWaveform(true));
     dispatch(setStoreWaveformTrack(track));
@@ -44,8 +40,13 @@ const Auditory = () => {
     setSortCriteria(e.currentTarget.value);
   };
 
+  const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
+  // logic for searching
   let searchedTracks;
-  if (searchCriteria !== "") {
+  if (searchCriteria) {
     searchedTracks = storeTracks.filter(
       (track) =>
         // searching for character/substring match in track title
@@ -60,10 +61,12 @@ const Auditory = () => {
         )
     );
   } else {
+    // reset the array to original array of tracks from redux store
+    // if no search criteria
     searchedTracks = storeTracks;
   }
 
-  // custom sort function to sort data based on sort criteri
+  // logic for sorting
   const customSort = (arr: TrackInt[], sortCriteria: string) => {
     return arr.sort((a, b) => {
       if (sortCriteria === "2") {
@@ -79,12 +82,12 @@ const Auditory = () => {
   };
 
   let sortedTracks = [...searchedTracks];
-  if (sortCriteria === "" || sortCriteria === "0") {
-    // pass
-  } else if (sortCriteria === "1") {
-    sortedTracks = sortedTracks.reverse();
-  } else {
-    customSort(sortedTracks, sortCriteria);
+  if (sortCriteria) {
+    if (sortCriteria === "1") {
+      sortedTracks = sortedTracks.reverse();
+    } else {
+      customSort(sortedTracks, sortCriteria);
+    }
   }
 
   if (Object.keys(storeTracks).length == 0) return null;
@@ -104,7 +107,7 @@ const Auditory = () => {
             onChange={handleSortChange}
           >
             <option value="">Sort</option>
-            <option value="0">Most recent</option>
+            <option value="">Most recent</option>
             <option value="1">Least recent</option>
             <option value="2">Artists A-Z</option>
             <option value="3">Artists Z-A</option>
