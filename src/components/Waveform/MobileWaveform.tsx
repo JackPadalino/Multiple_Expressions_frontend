@@ -19,7 +19,8 @@ const MobileWaveform = () => {
   const wavesurferRef = useRef<HTMLDivElement | null>(null);
 
   // track "listens" state variables
-  const trackListen = useRef<boolean>(false);
+  // const [listenIssued, setListenIssued] = useState<boolean>(false);
+  const listenIssued = useRef<boolean>(false);
 
   const { storeDisplayWaveform, storeWaveformTrack } = useAppSelector(
     (state) => state.waveform
@@ -79,7 +80,7 @@ const MobileWaveform = () => {
         setCurrentTime(formatTime(currentTimeSeconds));
         //logic for issue a new "listen"
         if (currentTimeSeconds / durationSeconds > 0.1) {
-          trackListen.current = true;
+          listenIssued.current = true;
         }
       });
 
