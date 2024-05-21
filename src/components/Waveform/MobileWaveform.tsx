@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef, MouseEvent } from "react";
 import { useAppSelector } from "../../store/hooks";
 import WaveSurfer from "wavesurfer.js";
-import { Box, duration } from "@mui/material";
+import { Box } from "@mui/material";
 
 import MobileWaveformDrawer1 from "./MobileWaveformDrawer1";
 import MobileWaveformDrawer2 from "./MobileWaveformDrawer2";
 import { TrackInt } from "../../ints/ints";
 import "./mobileWaveform.css";
-import { TrendingUpRounded } from "@mui/icons-material";
 
 const MobileWaveform = () => {
   const [trackModalState, setTrackModalState] = useState<boolean>(false); // modal state

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useAppSelector } from "../../store/hooks";
 import WaveSurfer from "wavesurfer.js";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 // MUI imports
@@ -24,6 +25,30 @@ const Waveform = () => {
 
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
+
+  // track "listens" state variables
+  // const [listenIssued, setListenIssued] = useState<boolean>(false);
+  const listenIssued = useRef<boolean>(false);
+
+  // function to issue listen for track
+  const updateTrackListens = () => {
+    let url: string;
+    if (import.meta.env.VITE_DEV_MODE === "true") {
+      url = import.meta.env.VITE_DEV_URL;
+    } else {
+      url = import.meta.env.VITE_PROD_URL;
+    }
+    const trackId = storeWaveformTrack.id;
+    axios
+      .post(`${url}/api/music/tracks/update/${trackId}`)
+      .then((response) => {
+        console.log(response);
+      })
+
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   // function to format seconds into 00:00 format
   const formatTime = (seconds: number) =>
@@ -73,17 +98,19 @@ const Waveform = () => {
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("audioprocess", () => {
         // @ts-expect-error: TS ignore error
-        const seconds = wavesurferRef.current.getCurrentTime();
+        const durationSeconds = wavesurferRef.current.getDuration();
         // @ts-expect-error: TS ignore error
-        setCurrentTime(formatTime(seconds));
-      });
-      // @ts-expect-error: TS ignore error
-      wavesurferRef.current.on("play", () => {
-        setIsPlaying(true);
-      });
-      // @ts-expect-error: TS ignore error
-      wavesurferRef.current.on("pause", () => {
-        setIsPlaying(false);
+        const currentTimeSeconds = wavesurferRef.current.getCurrentTime();
+        // @ts-expect-error: TS ignore error
+        setCurrentTime(formatTime(currentTimeSeconds));
+        //logic for issue a new "listen"
+        if (
+          currentTimeSeconds / durationSeconds > 0.1 &&
+          !listenIssued.current // no listen issued yet
+        ) {
+          listenIssued.current = true;
+          updateTrackListens();
+        }
       });
 
       // we can log the actual peaks data once the audio file has been
