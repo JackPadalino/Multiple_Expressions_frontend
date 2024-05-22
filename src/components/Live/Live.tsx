@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Chat from "./Chat";
+// import Chat from "./Chat";
 import { Box } from "@mui/material";
 
 // React social Icons
@@ -88,9 +88,9 @@ const Live = () => {
         />
         <p className="partyAnn">Follow us to stay updated!</p>
       </Box>
-      <Box className="chatContainer">
+      {/* <Box className="chatContainer">
         <Chat isPlaying={isPlaying} />
-      </Box>
+      </Box> */}
     </Box>
   );
 };
