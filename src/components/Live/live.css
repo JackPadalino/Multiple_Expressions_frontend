@@ -7,7 +7,8 @@
     display: none;
   }
   .playerContainer {
-    width: 90%;
+    /* width: 90%; */
+    width: 95%;
   }
   .chatContainer {
     width: 90%;
@@ -60,8 +61,10 @@
 .liveMainContainer {
   display: flex;
   gap: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
+  /* padding-left: 30px;
+  padding-right: 30px; */
+  padding-left: 5px;
+  padding-right: 5px;
   /* adding padding to all componets to account for pop up player div */
   padding-bottom: 122px;
 }
