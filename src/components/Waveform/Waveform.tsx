@@ -29,6 +29,9 @@ const Waveform = () => {
   // track "listens" state variables
   // const [listenIssued, setListenIssued] = useState<boolean>(false);
   const listenIssued = useRef<boolean>(false);
+  let listenSecondsA: number = 0;
+  let listenSecondsB: number = 0;
+  let listenSecondsC: number = 0;
 
   // function to issue listen for track
   const updateTrackListens = () => {
@@ -101,16 +104,17 @@ const Waveform = () => {
         const durationSeconds = wavesurferRef.current.getDuration();
         // @ts-expect-error: TS ignore error
         const currentTimeSeconds = wavesurferRef.current.getCurrentTime();
+
         // @ts-expect-error: TS ignore error
         setCurrentTime(formatTime(currentTimeSeconds));
-        //logic for issue a new "listen"
-        if (
-          currentTimeSeconds / durationSeconds > 0.1 &&
-          !listenIssued.current // no listen issued yet
-        ) {
-          listenIssued.current = true;
-          updateTrackListens();
-        }
+        // old logic for issue a new "listen"
+        // if (
+        //   currentTimeSeconds / durationSeconds > 0.1 &&
+        //   !listenIssued.current // no listen issued yet
+        // ) {
+        //   listenIssued.current = true;
+        //   updateTrackListens();
+        // }
       });
 
       // we can log the actual peaks data once the audio file has been
@@ -119,12 +123,33 @@ const Waveform = () => {
       //   const peaks = wavesurferRef.current.exportPeaks();
       //   console.log(JSON.stringify(peaks));
       // });
+
+      /** On audio position change, fires continuously during playback */
+      // @ts-expect-error: TS ignore error
+      wavesurferRef.current.on("timeupdate", (currentTime: number) => {
+        const seconds = Math.floor(currentTime);
+        listenSecondsB += 1;
+        listenSecondsC = seconds;
+        console.log({ A: listenSecondsA });
+        console.log({ B: listenSecondsB });
+        console.log({ C: listenSecondsC });
+      });
     }
   };
 
   useEffect(() => {
     playSong(storeWaveformTrack);
   }, [storeWaveformTrack]);
+
+  // useEffect(() => {
+  //   // if (listenSecondsC !== listenSecondsB - listenSecondsA) {
+  //   //   console.log("SKIP!");
+  //   // }
+  //   console.log({ A: listenSecondsA });
+  //   console.log({ B: listenSecondsB });
+  //   console.log({ C: listenSecondsC });
+  //   console.log(listenSecondsC === listenSecondsB - listenSecondsA);
+  // }, [currentTime]);
 
   return (
     <>
