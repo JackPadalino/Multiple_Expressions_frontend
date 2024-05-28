@@ -20,18 +20,17 @@ const Waveform = () => {
   );
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [trackDuration, setTrackDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [trackDurationDisplay, setTrackDurationDisplay] = useState(0);
+  const [currentTimeDisplay, setCurrentTimeDisplay] = useState(0);
 
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
 
-  // track "listens" state variables
-  // const [listenIssued, setListenIssued] = useState<boolean>(false);
-  const listenIssued = useRef<boolean>(false);
-  let listenSecondsA: number = 0;
-  let listenSecondsB: number = 0;
-  let listenSecondsC: number = 0;
+  // track "listens" ref variables
+  let listenIssued = useRef<boolean>(false);
+  let listenReference = useRef<number>(0);
+  let currentListenTime = useRef<number>(0);
+  let totalListenTime = useRef<number>(0);
 
   // function to issue listen for track
   const updateTrackListens = () => {
@@ -93,28 +92,29 @@ const Waveform = () => {
         // @ts-expect-error: TS ignore error
         const seconds = wavesurferRef.current.getDuration();
         // @ts-expect-error: TS ignore error
-        setTrackDuration(formatTime(seconds));
+        setTrackDurationDisplay(formatTime(seconds));
         // @ts-expect-error: TS ignore error
         wavesurferRef.current.play();
       });
 
       // @ts-expect-error: TS ignore error
-      wavesurferRef.current.on("audioprocess", () => {
-        // @ts-expect-error: TS ignore error
-        const durationSeconds = wavesurferRef.current.getDuration();
-        // @ts-expect-error: TS ignore error
-        const currentTimeSeconds = wavesurferRef.current.getCurrentTime();
+      wavesurferRef.current.on("timeupdate", (currentTime) => {
+        // const currentTimeSeconds = wavesurferRef.current.getCurrentTime();
+        // setTotalListenTime(
+        //   totalListenTime + Math.abs(currentTime - listenReference)
+        // );
 
+        currentListenTime.current = currentTime;
         // @ts-expect-error: TS ignore error
-        setCurrentTime(formatTime(currentTimeSeconds));
-        // old logic for issue a new "listen"
-        // if (
-        //   currentTimeSeconds / durationSeconds > 0.1 &&
-        //   !listenIssued.current // no listen issued yet
-        // ) {
-        //   listenIssued.current = true;
-        //   updateTrackListens();
-        // }
+        setCurrentTimeDisplay(formatTime(currentTime));
+        console.log(
+          Math.abs(currentListenTime.current - listenReference.current)
+        );
+      });
+
+      // @ts-expect-error: TS ignore error
+      wavesurferRef.current.on("interaction", (newTime) => {
+        listenReference.current = newTime;
       });
 
       // we can log the actual peaks data once the audio file has been
@@ -123,33 +123,12 @@ const Waveform = () => {
       //   const peaks = wavesurferRef.current.exportPeaks();
       //   console.log(JSON.stringify(peaks));
       // });
-
-      /** On audio position change, fires continuously during playback */
-      // @ts-expect-error: TS ignore error
-      wavesurferRef.current.on("timeupdate", (currentTime: number) => {
-        const seconds = Math.floor(currentTime);
-        listenSecondsB += 1;
-        listenSecondsC = seconds;
-        console.log({ A: listenSecondsA });
-        console.log({ B: listenSecondsB });
-        console.log({ C: listenSecondsC });
-      });
     }
   };
 
   useEffect(() => {
     playSong(storeWaveformTrack);
   }, [storeWaveformTrack]);
-
-  // useEffect(() => {
-  //   // if (listenSecondsC !== listenSecondsB - listenSecondsA) {
-  //   //   console.log("SKIP!");
-  //   // }
-  //   console.log({ A: listenSecondsA });
-  //   console.log({ B: listenSecondsB });
-  //   console.log({ C: listenSecondsC });
-  //   console.log(listenSecondsC === listenSecondsB - listenSecondsA);
-  // }, [currentTime]);
 
   return (
     <>
@@ -178,7 +157,7 @@ const Waveform = () => {
                   </Link>
                 ))}
               <Typography sx={{ color: "white", fontSize: "12px" }}>
-                {currentTime}/{trackDuration}
+                {currentTimeDisplay}/{trackDurationDisplay}
               </Typography>
             </Box>
           </Box>
