@@ -16,8 +16,14 @@
   .streamMsg {
     font-size: 10px;
   }
-  .partyAnn {
-    font-size: 10px;
+  .liveTitle {
+    font-size: 25px;
+  }
+  .liveInvitation {
+    font-size: 12px;
+  }
+  .setTime {
+    font-size: 12px;
   }
 }
 
@@ -38,8 +44,14 @@
   .streamMsg {
     font-size: 10px;
   }
-  .partyAnn {
-    font-size: 10px;
+  .liveTitle {
+    font-size: 25px;
+  }
+  .liveInvitation {
+    font-size: 12px;
+  }
+  .setTime {
+    font-size: 12px;
   }
 }
 
@@ -55,6 +67,9 @@
   }
   .chatContainer {
     width: 25%;
+  }
+  .liveTitle {
+    font-size: 35px;
   }
 }
 
@@ -83,10 +98,34 @@
   width: 100%;
 }
 
-.partyAnn {
+.liveTitle {
+  font-family: Quantify;
+  text-align: center;
+  color: rgb(234, 162, 42);
+}
+
+.liveInvitation {
   text-align: center;
 }
 
-.partyAnnSpan {
-  color: rgb(234, 162, 42);
+.setListTitle {
+  text-align: center;
+}
+
+.setTime {
+  text-align: center;
+}
+
+.artistHandle {
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", "sans-serif";
+  color: #e64516;
+}
+
+.setList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
