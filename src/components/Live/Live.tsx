@@ -77,7 +77,7 @@ const Live = () => {
         ></video>
         <p className="liveTitle">Multiple Expressions</p>
         <Box className="setList">
-          <p className="setTime">7:30-9:00pm</p>
+          <p className="setTime">7:30pm-9:00pm</p>
           <a
             className="artistHandle"
             href="https://www.instagram.com/scottcantstop/?igsh=eDRhbTZuMnAzdDJk"
