@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import Chat from "./Chat";
+// import Chat from "./Chat";
 import { Box } from "@mui/material";
 
 // React social Icons
@@ -75,22 +75,62 @@ const Live = () => {
           playsInline
           controls
         ></video>
-        <p className="partyAnn">
-          Psst...Multiple Expressions is having a party at{" "}
-          <span className="partyAnnSpan">Cafe Kitsune</span> on{" "}
-          <span className="partyAnnSpan">05.30.2024</span>!
-        </p>
+        <p className="liveTitle">Multiple Expressions</p>
+        <Box className="setList">
+          <p className="setTime">7:30-9:00pm</p>
+          <a
+            className="artistHandle"
+            href="https://www.instagram.com/scottcantstop/?igsh=eDRhbTZuMnAzdDJk"
+            target="_blank"
+          >
+            Partylord
+          </a>
+          <p className="setTime">9:00pm-10:00pm</p>
+          <a
+            className="artistHandle"
+            href="https://www.instagram.com/luciahaze/?igsh=ZGJ6Z2V4MmM1enM%3D"
+            target="_blank"
+          >
+            Lucia Haze
+          </a>
+          <p className="setTime">10:00pm-11:00pm</p>
+          <a
+            className="artistHandle"
+            href="https://www.instagram.com/1800than/?igsh=MXhmOXc3N2Y5MWdsbA%3D%3D"
+            target="_blank"
+          >
+            1800than
+          </a>
+          <p className="setTime">11:00pm-12:00am</p>
+          <a
+            className="artistHandle"
+            href="https://www.instagram.com/steelyphilmusic/?igsh=OW5uMm15N3FqbHY4"
+            target="_blank"
+          >
+            SteelyPhil
+          </a>
+          <p className="setTime">12:00am-1:00am</p>
+          <a
+            className="artistHandle"
+            href="https://www.instagram.com/slkt.dj/?igsh=Y2h4bzl4OHh4M2Fk&utm_source=qr"
+            target="_blank"
+          >
+            SLKT
+          </a>
+        </Box>
         <SocialIcon
           bgColor="black"
           network="instagram"
           url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
           target="_blank"
         />
-        <p className="partyAnn">Follow us to stay updated!</p>
+        <p className="liveInvitation">
+          Follow us to stay updated about future parties!
+        </p>
       </Box>
-      <Box className="chatContainer">
+      {/* <Box className="chatContainer">
         <Chat isPlaying={isPlaying} />
-      </Box>
+      </Box> */}
     </Box>
   );
 };
