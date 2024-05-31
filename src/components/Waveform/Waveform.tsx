@@ -28,6 +28,7 @@ const Waveform = () => {
 
   // track "listens" ref variables
   let listenIssued = useRef<boolean>(false);
+  let trackDuration = useRef<number>(0);
   let listenReference = useRef<number>(0);
   let currentListenTime = useRef<number>(0);
   let totalListenTime = useRef<number>(0);
@@ -91,32 +92,40 @@ const Waveform = () => {
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("ready", () => {
         // @ts-expect-error: TS ignore error
-        const seconds = wavesurferRef.current.getDuration();
+        // get duration of track and set ref variable
+        const duration = wavesurferRef.current.getDuration();
+        trackDuration.current = duration;
         // @ts-expect-error: TS ignore error
-        setTrackDurationDisplay(formatTime(seconds));
+        setTrackDurationDisplay(formatTime(duration));
         // @ts-expect-error: TS ignore error
         wavesurferRef.current.play();
       });
 
+      /**~~~~~Logic for issuing track listens~~~~~**/
+      /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("timeupdate", (currentTime) => {
-        // const currentTimeSeconds = wavesurferRef.current.getCurrentTime();
-        // setTotalListenTime(
-        //   totalListenTime + Math.abs(currentTime - listenReference)
-        // );
-
+        if (
+          // !listenIssued.current &&
+          totalListenTime.current / trackDuration.current >=
+          0.95
+        ) {
+          updateTrackListens();
+          listenIssued.current = true;
+        }
         currentListenTime.current = currentTime;
         // @ts-expect-error: TS ignore error
         setCurrentTimeDisplay(formatTime(currentTime));
-        console.log(
-          Math.abs(currentListenTime.current - listenReference.current)
+        totalListenTime.current += Math.abs(
+          currentListenTime.current - listenReference.current
         );
       });
-
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("interaction", (newTime) => {
         listenReference.current = newTime;
       });
+      /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      /**~~~~~Logic for issuing track listens~~~~~**/
 
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("play", () => {
