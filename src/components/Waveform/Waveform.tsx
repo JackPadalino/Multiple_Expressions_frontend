@@ -63,6 +63,7 @@ const Waveform = () => {
         wavesurferRef.current.destroy();
         wavesurferRef.current = null;
       }
+
       // @ts-expect-error: TS ignore error
       wavesurferRef.current = WaveSurfer.create({
         url: track.file,
@@ -111,6 +112,16 @@ const Waveform = () => {
           listenIssued.current = true;
           updateTrackListens();
         }
+      });
+
+      // @ts-expect-error: TS ignore error
+      wavesurferRef.current.on("play", () => {
+        setIsPlaying(true);
+      });
+
+      // @ts-expect-error: TS ignore error
+      wavesurferRef.current.on("pause", () => {
+        setIsPlaying(false);
       });
 
       // we can log the actual peaks data once the audio file has been
