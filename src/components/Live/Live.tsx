@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-// import Chat from "./Chat";
+import Chat from "./Chat";
 import { Box } from "@mui/material";
 
 // React social Icons
@@ -76,7 +76,7 @@ const Live = () => {
           controls
         ></video>
         <p className="liveTitle">Multiple Expressions</p>
-        <Box className="setList">
+        {/* <Box className="setList">
           <p className="setTime">7:30pm-9:00pm</p>
           <a
             className="artistHandle"
@@ -117,7 +117,7 @@ const Live = () => {
           >
             SLKT
           </a>
-        </Box>
+        </Box> */}
         <SocialIcon
           bgColor="black"
           network="instagram"
@@ -125,12 +125,12 @@ const Live = () => {
           target="_blank"
         />
         <p className="liveInvitation">
-          Follow us to stay updated about future parties!
+          Follow us to stay updated about future events!
         </p>
       </Box>
-      {/* <Box className="chatContainer">
+      <Box className="chatContainer">
         <Chat isPlaying={isPlaying} />
-      </Box> */}
+      </Box>
     </Box>
   );
 };
