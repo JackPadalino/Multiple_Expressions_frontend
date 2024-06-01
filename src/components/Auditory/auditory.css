@@ -21,10 +21,6 @@
     font-size: 13px;
   }
 
-  .auditoryTag {
-    font-size: 10px;
-  }
-
   /* .auditoryPlayingTrackImg {
     width: 100px;
     height: auto;
@@ -44,10 +40,6 @@
 
   .auditoryTracksDiv {
     gap: 10px;
-  }
-
-  .auditoryTag {
-    font-size: 10px;
   }
 
   /* .auditoryPlayingTrackImg {
@@ -132,8 +124,8 @@
   gap: 2px;
 }
 
-.auditoryPostedDate {
-  font-size: 10px;
+.auditoryTrackMeta {
+  font-size: 11px;
 }
 
 /* pagination styling */

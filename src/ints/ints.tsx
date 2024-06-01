@@ -28,5 +28,6 @@ export interface TrackInt {
   track_photo: string;
   tags: TagInt[];
   featured: boolean;
+  listens: number;
   upload_date: string;
 }

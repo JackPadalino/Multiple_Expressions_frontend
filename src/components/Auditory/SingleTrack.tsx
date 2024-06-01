@@ -43,12 +43,13 @@ const SingleTrack = ({ track, handlePlay }: SingleTrackProps) => {
         </Box>
         <Box className="auditoryTagsDiv">
           {track.tags.map((tag) => (
-            <p className="auditoryTag" key={tag.id}>
+            <p className="auditoryTrackMeta" key={tag.id}>
               #{tag.title}
             </p>
           ))}
         </Box>
-        <p className="auditoryPostedDate">Posted {track.upload_date}</p>
+        <p className="auditoryTrackMeta">{track.listens} streams</p>
+        <p className="auditoryTrackMeta">{track.upload_date}</p>
       </Box>
     </Box>
   );
