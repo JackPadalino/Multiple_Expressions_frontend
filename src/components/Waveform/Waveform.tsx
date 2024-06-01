@@ -92,38 +92,41 @@ const Waveform = () => {
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("ready", () => {
         // @ts-expect-error: TS ignore error
-        // get duration of track and set ref variable
-        const duration = wavesurferRef.current.getDuration();
-        trackDuration.current = duration;
+        const durationSeconds = wavesurferRef.current.getDuration();
+        // set ref for calculating track listens
+        trackDuration.current = durationSeconds;
         // @ts-expect-error: TS ignore error
-        setTrackDurationDisplay(formatTime(duration));
+        setTrackDurationDisplay(formatTime(durationSeconds));
         // @ts-expect-error: TS ignore error
         wavesurferRef.current.play();
       });
 
       /**~~~~~Logic for issuing track listens~~~~~**/
       /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
       // @ts-expect-error: TS ignore error
-      wavesurferRef.current.on("timeupdate", (currentTime) => {
+      wavesurferRef.current.on("timeupdate", (time) => {
         if (
-          // !listenIssued.current &&
-          totalListenTime.current / trackDuration.current >=
-          0.95
+          !listenIssued.current &&
+          totalListenTime.current / trackDuration.current >= 0.1
         ) {
-          updateTrackListens();
           listenIssued.current = true;
+          updateTrackListens();
         }
-        currentListenTime.current = currentTime;
         // @ts-expect-error: TS ignore error
-        setCurrentTimeDisplay(formatTime(currentTime));
-        totalListenTime.current += Math.abs(
-          currentListenTime.current - listenReference.current
-        );
+        setCurrentTimeDisplay(formatTime(time));
+        // calculation to determine "distance" from listenReference point
+        totalListenTime.current =
+          currentListenTime.current - listenReference.current;
+        currentListenTime.current = time;
       });
+
       // @ts-expect-error: TS ignore error
-      wavesurferRef.current.on("interaction", (newTime) => {
-        listenReference.current = newTime;
+      // resetting listen reference if user skips ahead/jumps back in track
+      wavesurferRef.current.on("interaction", (time) => {
+        listenReference.current = time;
       });
+
       /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
       /**~~~~~Logic for issuing track listens~~~~~**/
 

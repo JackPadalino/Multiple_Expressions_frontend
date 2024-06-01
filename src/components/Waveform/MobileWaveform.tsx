@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, MouseEvent } from "react";
 import { useAppSelector } from "../../store/hooks";
 import WaveSurfer from "wavesurfer.js";
+import axios from "axios";
 import { Box } from "@mui/material";
 
 import MobileWaveformDrawer1 from "./MobileWaveformDrawer1";
@@ -9,21 +10,44 @@ import { TrackInt } from "../../ints/ints";
 import "./mobileWaveform.css";
 
 const MobileWaveform = () => {
+  const { storeDisplayWaveform, storeWaveformTrack } = useAppSelector(
+    (state) => state.waveform
+  );
+
   const [trackModalState, setTrackModalState] = useState<boolean>(false); // modal state
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [trackDuration, setTrackDuration] = useState<number>(0);
-  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [trackDurationDisplay, setTrackDurationDisplay] = useState(0);
+  const [currentTimeDisplay, setCurrentTimeDisplay] = useState(0);
 
   const waveformRef = useRef<HTMLDivElement | null>(null);
   const wavesurferRef = useRef<HTMLDivElement | null>(null);
 
-  // track "listens" state variables
-  // const [listenIssued, setListenIssued] = useState<boolean>(false);
-  const listenIssued = useRef<boolean>(false);
+  // track "listens" ref variables
+  let listenIssued = useRef<boolean>(false);
+  let trackDuration = useRef<number>(0);
+  let listenReference = useRef<number>(0);
+  let currentListenTime = useRef<number>(0);
+  let totalListenTime = useRef<number>(0);
 
-  const { storeDisplayWaveform, storeWaveformTrack } = useAppSelector(
-    (state) => state.waveform
-  );
+  // function to issue listen for track
+  const updateTrackListens = () => {
+    let url: string;
+    if (import.meta.env.VITE_DEV_MODE === "true") {
+      url = import.meta.env.VITE_DEV_URL;
+    } else {
+      url = import.meta.env.VITE_PROD_URL;
+    }
+    const trackId = storeWaveformTrack.id;
+    axios
+      .post(`${url}/api/music/tracks/update/${trackId}`)
+      .then((response) => {
+        console.log(response);
+      })
+
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   // function to format seconds into 00:00 format
   const formatTime = (seconds: number) =>
@@ -63,25 +87,42 @@ const MobileWaveform = () => {
       wavesurferRef.current.on("ready", () => {
         // @ts-expect-error: TS ignore error
         const durationSeconds = wavesurferRef.current.getDuration();
+        // set ref for calculating track listens
+        trackDuration.current = durationSeconds;
         // @ts-expect-error: TS ignore error
-        setTrackDuration(formatTime(durationSeconds));
+        setTrackDurationDisplay(formatTime(durationSeconds));
         // @ts-expect-error: TS ignore error
         wavesurferRef.current.play();
       });
 
+      /**~~~~~Logic for issuing track listens~~~~~**/
+      /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
       // @ts-expect-error: TS ignore error
-      wavesurferRef.current.on("audioprocess", () => {
-        // @ts-expect-error: TS ignore error
-        const durationSeconds = wavesurferRef.current.getDuration();
-        // @ts-expect-error: TS ignore error
-        const currentTimeSeconds = wavesurferRef.current.getCurrentTime();
-        // @ts-expect-error: TS ignore error
-        setCurrentTime(formatTime(currentTimeSeconds));
-        //logic for issue a new "listen"
-        if (currentTimeSeconds / durationSeconds > 0.1) {
+      wavesurferRef.current.on("timeupdate", (time) => {
+        if (
+          !listenIssued.current &&
+          totalListenTime.current / trackDuration.current >= 0.1
+        ) {
           listenIssued.current = true;
+          updateTrackListens();
         }
+        // @ts-expect-error: TS ignore error
+        setCurrentTimeDisplay(formatTime(time));
+        // calculation to determine "distance" from listenReference point
+        totalListenTime.current =
+          currentListenTime.current - listenReference.current;
+        currentListenTime.current = time;
       });
+
+      // @ts-expect-error: TS ignore error
+      // resetting listen reference if user skips ahead/jumps back in track
+      wavesurferRef.current.on("interaction", (time) => {
+        listenReference.current = time;
+      });
+
+      /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      /**~~~~~Logic for issuing track listens~~~~~**/
 
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.on("play", () => {
@@ -148,8 +189,8 @@ const MobileWaveform = () => {
         handleJumpForward={handleJumpForward}
         trackModalState={trackModalState}
         waveformRef={waveformRef}
-        currentTime={currentTime}
-        trackDuration={trackDuration}
+        currentTime={currentTimeDisplay}
+        trackDuration={trackDurationDisplay}
       />
     </Box>
   );
