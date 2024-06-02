@@ -25,6 +25,7 @@ const Track = () => {
     track_photo: "",
     tags: [],
     featured: false,
+    listens: 0,
     upload_date: "",
   });
 
