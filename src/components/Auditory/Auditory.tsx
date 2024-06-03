@@ -70,10 +70,12 @@ const Auditory = () => {
   const customSort = (arr: TrackInt[], sortCriteria: string) => {
     return arr.sort((a, b) => {
       if (sortCriteria === "2") {
-        return a.artists[0].name.localeCompare(b.artists[0].name);
+        return b.listens - a.listens;
       } else if (sortCriteria === "3") {
-        return b.artists[0].name.localeCompare(a.artists[0].name);
+        return a.artists[0].name.localeCompare(b.artists[0].name);
       } else if (sortCriteria === "4") {
+        return b.artists[0].name.localeCompare(a.artists[0].name);
+      } else if (sortCriteria === "5") {
         return a.title.localeCompare(b.title);
       } else {
         return b.title.localeCompare(a.title);
@@ -109,10 +111,11 @@ const Auditory = () => {
             <option value="">Sort</option>
             <option value="">Most recent</option>
             <option value="1">Least recent</option>
-            <option value="2">Artists A-Z</option>
-            <option value="3">Artists Z-A</option>
-            <option value="4">Tracks A-Z</option>
-            <option value="5">Tracks Z-A</option>
+            <option value="2">Most listened</option>
+            <option value="3">Artists A-Z</option>
+            <option value="4">Artists Z-A</option>
+            <option value="5">Tracks A-Z</option>
+            <option value="6">Tracks Z-A</option>
           </select>
         </Box>
         <Box className="auditoryTracksDiv">

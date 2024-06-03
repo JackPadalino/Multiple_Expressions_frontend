@@ -48,7 +48,7 @@ const SingleTrack = ({ track, handlePlay }: SingleTrackProps) => {
             </p>
           ))}
         </Box>
-        <p className="auditoryTrackMeta">{track.listens} streams</p>
+        <p className="auditoryTrackMeta">{track.listens} listens</p>
         <p className="auditoryTrackMeta">{track.upload_date}</p>
       </Box>
     </Box>
