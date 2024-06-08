@@ -10,10 +10,12 @@ interface ArtistTrackProps {
 }
 
 const ArtistTracks = ({ artist, handlePlay }: ArtistTrackProps) => {
+  const reOrderedTracks = artist.tracks.reverse();
+
   return (
     <Box className="artistPageTracks">
       <h1 className="artistPageTracksSectionTitle">Tracks</h1>
-      {artist.tracks.map((track: TrackInt) => (
+      {reOrderedTracks.map((track: TrackInt) => (
         <Box key={track.id} className="artistPageTrackContainer">
           <Link to={`/track/${track.id}`}>
             <img className="artistPageTrackPhoto" src={track.track_photo} />
