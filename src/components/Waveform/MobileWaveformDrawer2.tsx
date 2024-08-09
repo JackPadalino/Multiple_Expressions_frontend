@@ -36,6 +36,13 @@ const MobileWaveformDrawer2 = ({
   currentTime,
   trackDuration,
 }: Drawer2Props) => {
+  // handling clicking on elements in the modal to play/pause
+  // check if the clicked element is the div itself and not a child element
+  const handleClick = (event: MouseEvent) => {
+    if (event.target === event.currentTarget) {
+      handlePlayPauseClick(event);
+    }
+  };
   return (
     <Drawer
       anchor={"bottom"}
@@ -47,7 +54,7 @@ const MobileWaveformDrawer2 = ({
       }}
     >
       <img src={waveformTrack.track_photo} className="backgroundImage" />
-      <Box className="waveformDrawer2Container">
+      <Box className="waveformDrawer2Container" onClick={handleClick}>
         <IconButton
           onClick={handleToggleDrawer}
           sx={{
@@ -68,6 +75,7 @@ const MobileWaveformDrawer2 = ({
           className={`waveformDrawer2Img ${
             isPlaying ? "visible" : "invisible"
           }`}
+          onClick={handleClick}
         />
         <Box className="waveformDrawer2TrackArtistsDiv">
           {Object.keys(waveformTrack).length > 0 && (
@@ -75,7 +83,8 @@ const MobileWaveformDrawer2 = ({
               <Typography
                 variant="h4"
                 sx={{ color: "#EAA128", fontFamily: "Quantify" }}
-                className={`${isPlaying ? "visible" : "invisible"}`}
+                // className={`${isPlaying ? "visible" : "invisible"}`}
+                onClick={handleClick}
               >
                 {waveformTrack.title}
               </Typography>
@@ -83,9 +92,7 @@ const MobileWaveformDrawer2 = ({
                 <Link
                   key={artist.id}
                   to={`/artist/${artist.id}`}
-                  className={`waveformDrawer2ArtistLink ${
-                    isPlaying ? "visible" : "invisible"
-                  }`}
+                  className={`waveformDrawer2ArtistLink`}
                   onClick={handleToggleDrawer}
                 >
                   {artist.name}
@@ -96,7 +103,8 @@ const MobileWaveformDrawer2 = ({
         </Box>
         <Box
           ref={waveformRef}
-          className={`waveformRef ${isPlaying ? "visible" : "invisible"}`}
+          className="waveformRef"
+          // className={`waveformRef ${isPlaying ? "visible" : "invisible"}`}
         />
         <Box className="waveformDrawer2ControlsDiv">
           <IconButton onClick={handleJumpBack}>
@@ -108,7 +116,10 @@ const MobileWaveformDrawer2 = ({
               className={isPlaying ? "visible" : "invisible"}
             />
           </IconButton>
-          <IconButton onClick={handlePlayPauseClick}>
+          <IconButton
+            className={isPlaying ? "visible" : "invisible"}
+            onClick={handlePlayPauseClick}
+          >
             {isPlaying ? (
               <Avatar
                 sx={{
@@ -156,6 +167,7 @@ const MobileWaveformDrawer2 = ({
         <Typography
           sx={{ color: "white", fontSize: "16px" }}
           className={isPlaying ? "visible" : "invisible"}
+          onClick={handlePlayPauseClick}
         >
           {currentTime}/{trackDuration}
         </Typography>

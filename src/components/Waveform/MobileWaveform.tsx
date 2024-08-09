@@ -145,6 +145,7 @@ const MobileWaveform = () => {
 
   const handlePlayPauseClick = (event: MouseEvent) => {
     event.stopPropagation();
+
     if (wavesurferRef.current) {
       // @ts-expect-error: TS ignore error
       wavesurferRef.current.playPause();
