@@ -54,7 +54,6 @@ const MobileWaveformDrawer2 = ({
             position: "absolute",
             top: 10,
             left: "5%",
-            // transform: "translateX(-50%)",
           }}
         >
           <KeyboardArrowDownIcon
@@ -71,6 +70,7 @@ const MobileWaveformDrawer2 = ({
               <Typography
                 variant="h4"
                 sx={{ color: "#EAA128", fontFamily: "Quantify" }}
+                className={`${isPlaying ? "visible" : "invisible"}`}
               >
                 {waveformTrack.title}
               </Typography>
@@ -78,7 +78,9 @@ const MobileWaveformDrawer2 = ({
                 <Link
                   key={artist.id}
                   to={`/artist/${artist.id}`}
-                  className="waveformDrawer2ArtistLink"
+                  className={`waveformDrawer2ArtistLink ${
+                    isPlaying ? "visible" : "invisible"
+                  }`}
                   onClick={handleToggleDrawer}
                 >
                   {artist.name}
@@ -87,7 +89,10 @@ const MobileWaveformDrawer2 = ({
             </>
           )}
         </Box>
-        <Box ref={waveformRef} className="waveformRef"></Box>
+        <Box
+          ref={waveformRef}
+          className={`waveformRef ${isPlaying ? "visible" : "invisible"}`}
+        />
         <Box className="waveformDrawer2ControlsDiv">
           <IconButton onClick={handleJumpBack}>
             <Replay10Icon
@@ -95,13 +100,14 @@ const MobileWaveformDrawer2 = ({
               sx={{
                 color: "white",
               }}
+              className={isPlaying ? "visible" : "invisible"}
             />
           </IconButton>
           <IconButton onClick={handlePlayPauseClick}>
             {isPlaying ? (
               <Avatar
                 sx={{
-                  bgcolor: "black",
+                  bgcolor: "white",
                   border: "1px solid white",
                   width: 50,
                   height: 50,
@@ -110,7 +116,7 @@ const MobileWaveformDrawer2 = ({
                 <PauseIcon
                   fontSize="large"
                   sx={{
-                    color: "white",
+                    color: "black",
                   }}
                 />
               </Avatar>
@@ -138,10 +144,14 @@ const MobileWaveformDrawer2 = ({
               sx={{
                 color: "white",
               }}
+              className={isPlaying ? "visible" : "invisible"}
             />
           </IconButton>
         </Box>
-        <Typography sx={{ color: "white", fontSize: "16px" }}>
+        <Typography
+          sx={{ color: "white", fontSize: "16px" }}
+          className={isPlaying ? "visible" : "invisible"}
+        >
           {currentTime}/{trackDuration}
         </Typography>
       </Box>
