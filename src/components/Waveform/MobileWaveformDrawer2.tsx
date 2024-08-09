@@ -46,6 +46,7 @@ const MobileWaveformDrawer2 = ({
         keepMounted: true,
       }}
     >
+      <img src={waveformTrack.track_photo} className="backgroundImage" />
       <Box className="waveformDrawer2Container">
         <IconButton
           onClick={handleToggleDrawer}
@@ -101,7 +102,7 @@ const MobileWaveformDrawer2 = ({
               <Avatar
                 sx={{
                   bgcolor: "black",
-                  border: "2px solid white",
+                  border: "1px solid white",
                   width: 50,
                   height: 50,
                 }}
@@ -117,7 +118,7 @@ const MobileWaveformDrawer2 = ({
               <Avatar
                 sx={{
                   bgcolor: "white",
-                  border: "2px solid white",
+                  border: "1px solid white",
                   width: 50,
                   height: 50,
                 }}
