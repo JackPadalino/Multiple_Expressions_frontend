@@ -63,7 +63,12 @@ const MobileWaveformDrawer2 = ({
             }}
           />
         </IconButton>
-        <img src={waveformTrack.track_photo} className="waveformDrawer2Img" />
+        <img
+          src={waveformTrack.track_photo}
+          className={`waveformDrawer2Img ${
+            isPlaying ? "visible" : "invisible"
+          }`}
+        />
         <Box className="waveformDrawer2TrackArtistsDiv">
           {Object.keys(waveformTrack).length > 0 && (
             <>
