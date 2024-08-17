@@ -17,13 +17,13 @@ const Paginate = ({
   handlePageChange,
 }: PaginateProps) => {
   return (
-    <Stack spacing={2}>
+    <Stack>
       <Pagination
         count={Math.ceil(filteredTracks.length / postsPerPage)}
         page={currentPage}
         onChange={handlePageChange}
         shape="rounded"
-        size="large"
+        size="medium"
         sx={{
           "& button": {
             color: "white",
