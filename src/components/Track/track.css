@@ -17,6 +17,11 @@
     width: 450px;
     height: 450px;
   }
+  .trackTitle {
+    font-family: Quantify;
+    font-size: 40px;
+    /* color: rgb(234, 162, 42); */
+  }
 }
 
 .trackMainContainer {
@@ -46,8 +51,6 @@
 
 .trackTitle {
   font-family: Quantify;
-  font-size: 40px;
-  /* color: rgb(234, 162, 42); */
 }
 
 .trackArtists {

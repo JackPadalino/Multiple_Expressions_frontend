@@ -81,7 +81,7 @@ const MobileWaveformDrawer2 = ({
           {Object.keys(waveformTrack).length > 0 && (
             <>
               <Typography
-                variant="h4"
+                variant="h5"
                 sx={{ color: "#EAA128", fontFamily: "Quantify" }}
                 // className={`${isPlaying ? "visible" : "invisible"}`}
                 onClick={handleClick}

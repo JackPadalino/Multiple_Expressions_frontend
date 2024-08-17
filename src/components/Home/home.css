@@ -38,6 +38,10 @@
     height: 450px;
   }
 
+  .swiperTrackTitle {
+    font-size: 30px;
+  }
+
   .swiper-button-next::after {
     color: rgb(234, 162, 42);
   }
@@ -163,7 +167,6 @@
 }
 
 .swiperTrackTitle {
-  font-size: 30px;
   font-family: Coolvetica;
 }
 
