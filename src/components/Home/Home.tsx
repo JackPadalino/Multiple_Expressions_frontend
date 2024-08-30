@@ -24,16 +24,16 @@ const Home = () => {
   };
 
   return (
-    <Box className="homeMainContainer">
+    <Box component="main" className="homeMainContainer">
       <TrackSwiper featuredTracks={featuredTracks} handlePlay={handlePlay} />
-      <Box className="homeIntroDiv">
+      <Box component="section" className="homeIntroDiv">
         <h1 className="homeTitle">Multiple Expressions</h1>
         <p className="homeDesc">
           Showcasing the wealth of lesser-known talent of the NYC electronic
           music scene
         </p>
       </Box>
-      <Box className="homeInvitationDiv">
+      <Box component="section" className="homeInvitationDiv">
         <p className="homeInvitation">
           Want to post with us? DM us on Instagram or email
           <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
@@ -45,13 +45,15 @@ const Home = () => {
           target="_blank"
         />
       </Box>
-      <p className="disclaimer">
-        Mutliple Expressions does not own or claim to own any of the music
-        posted on this platform and will not use any posted material for profit.
-        Please email us at{" "}
-        <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>{" "}
-        with any copyright issues.
-      </p>
+      <Box component="section">
+        <p className="disclaimer">
+          Mutliple Expressions does not own or claim to own any of the music
+          posted on this platform and will not use any posted material for
+          profit. Please email us at{" "}
+          <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>{" "}
+          with any copyright issues.
+        </p>
+      </Box>
     </Box>
   );
 };

@@ -21,7 +21,7 @@ interface SwiperProps {
 
 const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
   return (
-    <Box className="swiperMainContainer">
+    <Box component="section" className="swiperMainContainer">
       <Swiper
         navigation={true}
         pagination={true}
@@ -29,14 +29,19 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
       >
         {featuredTracks.map((track, index) => (
           <SwiperSlide key={index}>
-            <img src={track.track_photo} className="swiperTrackImg" />
-            <Box className="swiperTrackInfo">
+            <img
+              src={track.track_photo}
+              className="swiperTrackImg"
+              alt={`Covert art for new featured track "${track.title}".`}
+            />
+            <Box component="section" className="swiperTrackInfo">
               <h3>New featured track</h3>
               <Box className="swiperTrackTitlePlayDiv">
                 <Link className="swiperTrackLink" to={`/track/${track.id}`}>
                   <h2 className="swiperTrackTitle">{track.title}</h2>
                 </Link>
                 <IconButton
+                  role="button"
                   onClick={() => handlePlay(track)}
                   sx={{ padding: "0px", margin: "0px" }}
                 >
