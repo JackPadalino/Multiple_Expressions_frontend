@@ -4,16 +4,24 @@ import "./nav.css";
 
 const Nav = () => {
   return (
-    <Box className="navMainContainer">
-      <NavLink to="/home" className="navLink">
-        Home
-      </NavLink>
-      <NavLink to="/auditory" className="navLink">
-        Auditory
-      </NavLink>
-      <NavLink to="/live" className="navLink">
-        Live
-      </NavLink>
+    <Box component="nav" className="navMainContainer">
+      <ul className="navList">
+        <li className="navItem">
+          <NavLink to="/home" className="navLink">
+            Home
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink to="/auditory" className="navLink">
+            Auditory
+          </NavLink>
+        </li>
+        <li className="navItem">
+          <NavLink to="/live" className="navLink">
+            Live
+          </NavLink>
+        </li>
+      </ul>
     </Box>
   );
 };
