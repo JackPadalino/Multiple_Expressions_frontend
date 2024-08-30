@@ -54,18 +54,20 @@ const Track = () => {
 
   if (loading) return null;
   return (
-    <Box className="trackMainContainer">
+    <Box component="main" className="trackMainContainer">
       <img
         className="trackPhoto"
         src={track.track_photo}
         onClick={() => handlePlay(track)}
+        alt={`Cover are for track "${track.title}".`}
       />
-      <Box className="trackTrackInfo">
+      <Box component="section" className="trackTrackInfo">
         <Box className="trackTitlePlayDiv">
           <h2 className="trackTitle">{track.title}</h2>
           <IconButton
+            role="button"
             onClick={() => handlePlay(track)}
-            sx={{ padding: "0px", margin: "0px" }}
+            className="playButton"
           >
             <PlayArrowIcon
               fontSize="large"

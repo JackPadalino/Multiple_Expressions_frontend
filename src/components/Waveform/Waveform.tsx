@@ -19,6 +19,7 @@ const Waveform = () => {
     (state) => state.waveform
   );
 
+  const playButtonRef = useRef<HTMLButtonElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDurationDisplay, setTrackDurationDisplay] = useState(0);
   const [currentTimeDisplay, setCurrentTimeDisplay] = useState(0);
@@ -153,6 +154,10 @@ const Waveform = () => {
     playSong(storeWaveformTrack);
   }, [storeWaveformTrack]);
 
+  useEffect(() => {
+    playButtonRef.current?.focus();
+  }, [playButtonRef.current]);
+
   return (
     <>
       {storeDisplayWaveform && (
@@ -195,8 +200,13 @@ const Waveform = () => {
                 }}
               />
             </IconButton>
-            {/* @ts-expect-error: TS ignore error */}
-            <IconButton onClick={() => wavesurferRef.current.playPause()}>
+            <IconButton
+              className="asdfasdfbutton"
+              ref={playButtonRef} // Assign the ref to IconButton
+              role="button"
+              /* @ts-expect-error: TS ignore error */
+              onClick={() => wavesurferRef.current.playPause()}
+            >
               {isPlaying ? (
                 <Avatar
                   sx={{

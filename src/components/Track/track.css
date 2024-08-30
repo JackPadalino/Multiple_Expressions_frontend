@@ -47,6 +47,11 @@
   display: flex;
 }
 
+.playButton {
+  padding: "0px";
+  margin: "0px";
+}
+
 .trackTitle {
   font-family: Quantify;
 }
