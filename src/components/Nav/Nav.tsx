@@ -17,6 +17,11 @@ const Nav = () => {
           </NavLink>
         </li>
         <li className="navItem">
+          <NavLink to="" className="navLink">
+            Events
+          </NavLink>
+        </li>
+        <li className="navItem">
           <NavLink to="/live" className="navLink">
             Live
           </NavLink>
