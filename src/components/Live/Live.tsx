@@ -10,8 +10,21 @@ import "./live.css";
 
 const Live = () => {
   const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
+  const playerRef = useRef<any>(null); // Ref to store the player instance
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [hasEnded, setHasEnded] = useState<boolean>(false);
+
+  const handleVideoPreview = (hovering: boolean) => {
+    if (playerRef.current) {
+      if (hovering) {
+        playerRef.current.play();
+        setIsPlaying(true);
+      } else {
+        playerRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   const initPlayer = async () => {
     // check if IVSPlayer is supported by the browser
@@ -19,28 +32,29 @@ const Live = () => {
     if (IVSPlayer.isPlayerSupported && videoPlayerRef.current) {
       // @ts-expect-error: TS ignore error
       const player = await IVSPlayer.create();
+      playerRef.current = player;
 
       // attach event listeners to listen for changes in player
       // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
-        setIsPlaying(true);
-        setHasEnded(false);
+        // setIsPlaying(true);
+        // setHasEnded(false);
       });
       // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerState.ENDED, () => {
-        setIsPlaying(false);
-        setHasEnded(true);
+        // setIsPlaying(false);
+        // setHasEnded(true);
       });
       // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
         if (err.type === "ErrorNotAvailable") {
-          setIsPlaying(false);
+          // setIsPlaying(false);
         }
       });
 
       player.attachHTMLVideoElement(videoPlayerRef.current);
       player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
-      player.play();
+      // player.play()
 
       // pause the player when the component unmounts
       return () => {
@@ -57,7 +71,7 @@ const Live = () => {
     <Box className="liveMainContainer">
       <Box className="phantomContainer" />
       <Box className="playerContainer">
-        {!isPlaying && !hasEnded && (
+        {/* {!isPlaying && !hasEnded && (
           <p className="streamMsg">
             Looks like nothing is playing! Check back soon or refresh your
             browser.
@@ -67,13 +81,15 @@ const Live = () => {
           <p className="streamMsg">
             Our live stream has ended. Thanks for coming!
           </p>
-        )}
+        )} */}
         <video
           ref={videoPlayerRef}
           className="player"
           id="video-player"
           playsInline
           controls
+          onMouseEnter={() => handleVideoPreview(true)} // Start playing on hover
+          onMouseLeave={() => handleVideoPreview(false)} // Pause when mouse leaves
         ></video>
         <p className="liveTitle">Multiple Expressions</p>
         {/* <Box className="setList">
@@ -128,9 +144,9 @@ const Live = () => {
           Follow us to stay updated about future events!
         </p>
       </Box>
-      <Box className="chatContainer">
+      {/* <Box className="chatContainer">
         <Chat isPlaying={isPlaying} />
-      </Box>
+      </Box> */}
     </Box>
   );
 };
