@@ -15,15 +15,17 @@ const Live = () => {
   const [hasEnded, setHasEnded] = useState<boolean>(false);
 
   const handleVideoPreview = (hovering: boolean) => {
-    if (playerRef.current) {
+    if (playerRef.current && !isPlaying) {
       if (hovering) {
         playerRef.current.play();
-        setIsPlaying(true);
       } else {
         playerRef.current.pause();
-        setIsPlaying(false);
       }
     }
+  };
+
+  const handlePlay = () => {
+    console.log("Playing video");
   };
 
   const initPlayer = async () => {
@@ -90,6 +92,7 @@ const Live = () => {
           controls
           onMouseEnter={() => handleVideoPreview(true)} // Start playing on hover
           onMouseLeave={() => handleVideoPreview(false)} // Pause when mouse leaves
+          onClick={handlePlay}
         ></video>
         <p className="liveTitle">Multiple Expressions</p>
         {/* <Box className="setList">
