@@ -204,6 +204,7 @@
   position: relative;
   width: 300px;
   height: 200px;
+  overflow: hidden;
 }
 
 .homePlayerImg {
@@ -223,6 +224,5 @@
 .homePlayer {
   position: absolute;
   z-index: 0;
-  width: 100%;
-  height: 100%;
+  width: 350px;
 }

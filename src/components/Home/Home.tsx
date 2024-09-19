@@ -34,7 +34,7 @@ const Home = () => {
       } else {
         imgRef.current.classList.add("faded");
       }
-      if (hovering) {
+      if (liveReady && hovering) {
         playerRef.current.play();
       } else {
         playerRef.current.pause();
@@ -74,7 +74,6 @@ const Home = () => {
 
       player.attachHTMLVideoElement(videoPlayerRef.current);
       player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
-      player.play();
 
       // pause the player when the component unmounts
       return () => {
@@ -132,7 +131,7 @@ const Home = () => {
           className="homePlayer"
           id="video-player"
           playsInline
-          controls
+          // controls
           onClick={() => console.log("Video clicked!")}
         ></video>
       </Box>
