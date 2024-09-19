@@ -10,32 +10,8 @@ import "./live.css";
 
 const Live = () => {
   const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
-  const imgRef = useRef<any>(null);
-  const playerRef = useRef<any>(null); // Ref to store the player instance
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [hasEnded, setHasEnded] = useState<boolean>(false);
-
-  const handleVideoPreview = (hovering: boolean) => {
-    // if (playerRef.current && !isPlaying) {
-    //   if (hovering) {
-    //     playerRef.current.play();
-    //   } else {
-    //     playerRef.current.pause();
-    //   }
-    // }
-  };
-
-  const fadeImg = () => {
-    if (imgRef.current.classList.contains("faded")) {
-      imgRef.current.classList.remove("faded");
-    } else {
-      imgRef.current.classList.add("faded");
-    }
-  };
-
-  const handlePlay = () => {
-    console.log("Playing video");
-  };
 
   const initPlayer = async () => {
     // check if IVSPlayer is supported by the browser
@@ -43,23 +19,22 @@ const Live = () => {
     if (IVSPlayer.isPlayerSupported && videoPlayerRef.current) {
       // @ts-expect-error: TS ignore error
       const player = await IVSPlayer.create();
-      playerRef.current = player;
 
       // attach event listeners to listen for changes in player
       // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
-        // setIsPlaying(true);
-        // setHasEnded(false);
+        setIsPlaying(true);
+        setHasEnded(false);
       });
       // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerState.ENDED, () => {
-        // setIsPlaying(false);
-        // setHasEnded(true);
+        setIsPlaying(false);
+        setHasEnded(true);
       });
       // @ts-expect-error: TS ignore error
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
         if (err.type === "ErrorNotAvailable") {
-          // setIsPlaying(false);
+          setIsPlaying(false);
         }
       });
 
@@ -82,7 +57,7 @@ const Live = () => {
     <Box className="liveMainContainer">
       <Box className="phantomContainer" />
       <Box className="playerContainer">
-        {/* {!isPlaying && !hasEnded && (
+        {!isPlaying && !hasEnded && (
           <p className="streamMsg">
             Looks like nothing is playing! Check back soon or refresh your
             browser.
@@ -92,31 +67,15 @@ const Live = () => {
           <p className="streamMsg">
             Our live stream has ended. Thanks for coming!
           </p>
-        )} */}
-        <img
-          // data-src={`https://${
-          //   import.meta.env.VITE_AWS_S3_BUCKET
-          // }.s3.amazonaws.com/site_photos/logo.jpeg`}
-          src="https://multiple-expressions-s3-bucket.s3.amazonaws.com/site_photos/logo.jpeg"
-          // ref={imgRefs[1]}
-          className="livePlayerImg"
-          ref={imgRef}
-          alt="Entrance Image"
-          onMouseEnter={() => imgRef.current.classList.add("faded")} // Start playing on hover
-          onMouseLeave={() => imgRef.current.classList.remove("faded")} // Pause when mouse leaves
-        />
+        )}
         <video
           ref={videoPlayerRef}
           className="player"
           id="video-player"
           playsInline
           controls
-          // onMouseEnter={() => handleVideoPreview(true)} // Start playing on hover
-          // onMouseLeave={() => handleVideoPreview(false)} // Pause when mouse leaves
-
-          onClick={handlePlay}
         ></video>
-        {/* <p className="liveTitle">Multiple Expressions</p> */}
+        <p className="liveTitle">Multiple Expressions</p>
         {/* <Box className="setList">
           <p className="setTime">7:30pm-9:00pm</p>
           <a
@@ -159,7 +118,7 @@ const Live = () => {
             SLKT
           </a>
         </Box> */}
-        {/* <SocialIcon
+        <SocialIcon
           bgColor="black"
           network="instagram"
           url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
@@ -167,11 +126,11 @@ const Live = () => {
         />
         <p className="liveInvitation">
           Follow us to stay updated about future events!
-        </p> */}
+        </p>
       </Box>
-      {/* <Box className="chatContainer">
+      <Box className="chatContainer">
         <Chat isPlaying={isPlaying} />
-      </Box> */}
+      </Box>
     </Box>
   );
 };
