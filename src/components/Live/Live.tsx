@@ -26,14 +26,10 @@ const Live = () => {
   };
 
   const fadeImg = () => {
-    if (imgRef.current) {
-      imgRef.current.classList.add("faded");
-    }
-  };
-
-  const loadImg = () => {
-    if (imgRef.current) {
+    if (imgRef.current.classList.contains("faded")) {
       imgRef.current.classList.remove("faded");
+    } else {
+      imgRef.current.classList.add("faded");
     }
   };
 
@@ -106,8 +102,8 @@ const Live = () => {
           className="livePlayerImg"
           ref={imgRef}
           alt="Entrance Image"
-          onMouseEnter={() => fadeImg()} // Start playing on hover
-          onMouseLeave={() => loadImg()} // Pause when mouse leaves
+          onMouseEnter={() => imgRef.current.classList.add("faded")} // Start playing on hover
+          onMouseLeave={() => imgRef.current.classList.remove("faded")} // Pause when mouse leaves
         />
         <video
           ref={videoPlayerRef}
