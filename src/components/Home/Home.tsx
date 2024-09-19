@@ -35,9 +35,9 @@ const Home = () => {
         imgRef.current.classList.add("faded");
       }
       if (liveReady && hovering) {
-        //   playerRef.current.play();
-        // } else {
-        //   playerRef.current.pause();
+        playerRef.current.play();
+      } else {
+        playerRef.current.pause();
       }
     }
   };
@@ -74,7 +74,7 @@ const Home = () => {
 
       player.attachHTMLVideoElement(videoPlayerRef.current);
       player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
-      player.play();
+      // player.play();
 
       // pause the player when the component unmounts
       return () => {
@@ -133,7 +133,6 @@ const Home = () => {
           id="video-player"
           playsInline
           // controls
-          onClick={() => console.log("Video clicked!")}
         ></video>
       </Box>
       {liveReady && <p className="liveReadyText">Psst...we're live rn ^^^</p>}
