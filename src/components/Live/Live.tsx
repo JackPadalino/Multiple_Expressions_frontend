@@ -10,17 +10,30 @@ import "./live.css";
 
 const Live = () => {
   const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
+  const imgRef = useRef<any>(null);
   const playerRef = useRef<any>(null); // Ref to store the player instance
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [hasEnded, setHasEnded] = useState<boolean>(false);
 
   const handleVideoPreview = (hovering: boolean) => {
-    if (playerRef.current && !isPlaying) {
-      if (hovering) {
-        playerRef.current.play();
-      } else {
-        playerRef.current.pause();
-      }
+    // if (playerRef.current && !isPlaying) {
+    //   if (hovering) {
+    //     playerRef.current.play();
+    //   } else {
+    //     playerRef.current.pause();
+    //   }
+    // }
+  };
+
+  const fadeImg = () => {
+    if (imgRef.current) {
+      imgRef.current.classList.add("faded");
+    }
+  };
+
+  const loadImg = () => {
+    if (imgRef.current) {
+      imgRef.current.classList.remove("faded");
     }
   };
 
@@ -56,7 +69,7 @@ const Live = () => {
 
       player.attachHTMLVideoElement(videoPlayerRef.current);
       player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
-      // player.play()
+      player.play();
 
       // pause the player when the component unmounts
       return () => {
@@ -84,17 +97,30 @@ const Live = () => {
             Our live stream has ended. Thanks for coming!
           </p>
         )} */}
+        <img
+          // data-src={`https://${
+          //   import.meta.env.VITE_AWS_S3_BUCKET
+          // }.s3.amazonaws.com/site_photos/logo.jpeg`}
+          src="https://multiple-expressions-s3-bucket.s3.amazonaws.com/site_photos/logo.jpeg"
+          // ref={imgRefs[1]}
+          className="livePlayerImg"
+          ref={imgRef}
+          alt="Entrance Image"
+          onMouseEnter={() => fadeImg()} // Start playing on hover
+          onMouseLeave={() => loadImg()} // Pause when mouse leaves
+        />
         <video
           ref={videoPlayerRef}
           className="player"
           id="video-player"
           playsInline
           controls
-          onMouseEnter={() => handleVideoPreview(true)} // Start playing on hover
-          onMouseLeave={() => handleVideoPreview(false)} // Pause when mouse leaves
+          // onMouseEnter={() => handleVideoPreview(true)} // Start playing on hover
+          // onMouseLeave={() => handleVideoPreview(false)} // Pause when mouse leaves
+
           onClick={handlePlay}
         ></video>
-        <p className="liveTitle">Multiple Expressions</p>
+        {/* <p className="liveTitle">Multiple Expressions</p> */}
         {/* <Box className="setList">
           <p className="setTime">7:30pm-9:00pm</p>
           <a
@@ -137,7 +163,7 @@ const Live = () => {
             SLKT
           </a>
         </Box> */}
-        <SocialIcon
+        {/* <SocialIcon
           bgColor="black"
           network="instagram"
           url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
@@ -145,7 +171,7 @@ const Live = () => {
         />
         <p className="liveInvitation">
           Follow us to stay updated about future events!
-        </p>
+        </p> */}
       </Box>
       {/* <Box className="chatContainer">
         <Chat isPlaying={isPlaying} />
