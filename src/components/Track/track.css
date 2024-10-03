@@ -29,6 +29,9 @@
   gap: 20px;
   padding-left: 30px;
   padding-right: 30px;
+  /* adding margin top to all components */
+  margin-top: 20px;
+
   /* adding padding to all componets to account for pop up player div */
   padding-bottom: 122px;
 }

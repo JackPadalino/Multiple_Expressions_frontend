@@ -80,6 +80,8 @@
   padding-right: 30px; */
   padding-left: 5px;
   padding-right: 5px;
+  /* adding margin top to all components */
+  margin-top: 20px;
   /* adding padding to all componets to account for pop up player div */
   padding-bottom: 122px;
 }
