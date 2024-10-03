@@ -9,7 +9,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 // Swiper required modules
-import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import {
+  // Navigation,
+  Autoplay,
+  // Pagination
+} from "swiper/modules";
 import { TrackInt } from "../../ints/ints";
 import "./trackSwiper.css";
 

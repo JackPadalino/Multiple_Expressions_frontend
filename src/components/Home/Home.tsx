@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+// import { useState, useRef, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { Box } from "@mui/material";
 
@@ -14,78 +14,78 @@ import {
 
 import { TrackInt } from "../../ints/ints";
 import "./home.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { featuredTracks } = useAppSelector((state) => state.music);
 
-  // state variables and refs for video player
-  const [liveReady, setLiveReady] = useState<boolean>(false);
-  const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
-  const imgRef = useRef<any>(null);
-  const playerRef = useRef<any>(null); // ref to store the player instance
+  // // state variables and refs for video player
+  // const [liveReady, setLiveReady] = useState<boolean>(false);
+  // const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
+  // const imgRef = useRef<any>(null);
+  // const playerRef = useRef<any>(null); // ref to store the player instance
 
-  const handleVideoPreview = (hovering: boolean) => {
-    if (playerRef.current) {
-      if (imgRef.current.classList.contains("faded")) {
-        imgRef.current.classList.remove("faded");
-      } else {
-        imgRef.current.classList.add("faded");
-      }
-      if (liveReady && hovering) {
-        playerRef.current.play();
-      } else {
-        playerRef.current.pause();
-      }
-    }
-  };
+  // const handleVideoPreview = (hovering: boolean) => {
+  //   if (playerRef.current) {
+  //     if (imgRef.current.classList.contains("faded")) {
+  //       imgRef.current.classList.remove("faded");
+  //     } else {
+  //       imgRef.current.classList.add("faded");
+  //     }
+  //     if (liveReady && hovering) {
+  //       playerRef.current.play();
+  //     } else {
+  //       playerRef.current.pause();
+  //     }
+  //   }
+  // };
 
-  const initPlayer = async () => {
-    // check if IVSPlayer is supported by the browser
-    // @ts-expect-error: TS ignore error
-    if (IVSPlayer.isPlayerSupported && videoPlayerRef.current) {
-      // @ts-expect-error: TS ignore error
-      const player = await IVSPlayer.create();
-      playerRef.current = player;
+  // const initPlayer = async () => {
+  //   // check if IVSPlayer is supported by the browser
+  //   // @ts-expect-error: TS ignore error
+  //   if (IVSPlayer.isPlayerSupported && videoPlayerRef.current) {
+  //     // @ts-expect-error: TS ignore error
+  //     const player = await IVSPlayer.create();
+  //     playerRef.current = player;
 
-      // attach event listeners to listen for changes in player
-      // @ts-expect-error: TS ignore error
-      player.addEventListener(IVSPlayer.PlayerState.READY, () => {
-        setLiveReady(true);
-      });
+  //     // attach event listeners to listen for changes in player
+  //     // @ts-expect-error: TS ignore error
+  //     player.addEventListener(IVSPlayer.PlayerState.READY, () => {
+  //       setLiveReady(true);
+  //     });
 
-      // @ts-expect-error: TS ignore error
-      player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
-        // setIsPlaying(true);
-        // setHasEnded(false);
-      });
-      // @ts-expect-error: TS ignore error
-      player.addEventListener(IVSPlayer.PlayerState.ENDED, () => {
-        setLiveReady(false);
-      });
-      // @ts-expect-error: TS ignore error
-      player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
-        if (err.type === "ErrorNotAvailable") {
-          // setLiveReady(false);
-        }
-      });
+  //     // @ts-expect-error: TS ignore error
+  //     player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
+  //       // setIsPlaying(true);
+  //       // setHasEnded(false);
+  //     });
+  //     // @ts-expect-error: TS ignore error
+  //     player.addEventListener(IVSPlayer.PlayerState.ENDED, () => {
+  //       setLiveReady(false);
+  //     });
+  //     // @ts-expect-error: TS ignore error
+  //     player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
+  //       if (err.type === "ErrorNotAvailable") {
+  //         // setLiveReady(false);
+  //       }
+  //     });
 
-      player.attachHTMLVideoElement(videoPlayerRef.current);
-      player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
-      // player.play();
+  //     player.attachHTMLVideoElement(videoPlayerRef.current);
+  //     player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
+  //     // player.play();
 
-      // pause the player when the component unmounts
-      return () => {
-        player.pause();
-      };
-    }
-  };
+  //     // pause the player when the component unmounts
+  //     return () => {
+  //       player.pause();
+  //     };
+  //   }
+  // };
 
-  useEffect(() => {
-    initPlayer();
-  }, []);
+  // useEffect(() => {
+  //   initPlayer();
+  // }, []);
 
   const handlePlay = (track: TrackInt) => {
     dispatch(setStoreDisplayWaveform(true));
@@ -102,7 +102,7 @@ const Home = () => {
           music scene
         </p>
       </Box>
-      {/* <Box component="section" className="homeInvitationDiv">
+      <Box component="section" className="homeInvitationDiv">
         <p className="homeInvitation">
           Want to post with us? DM us on Instagram or email
           <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
@@ -113,9 +113,9 @@ const Home = () => {
           url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
           target="_blank"
         />
-      </Box> */}
+      </Box>
 
-      <Box className="homePlayerContainer">
+      {/* <Box className="homePlayerContainer">
         <img
           src={`https://${
             import.meta.env.VITE_AWS_S3_BUCKET
@@ -134,8 +134,8 @@ const Home = () => {
           playsInline
           // controls
         ></video>
-      </Box>
-      {liveReady && <p className="liveReadyText">Psst...we're live rn ^^^</p>}
+      </Box> */}
+      {/* {liveReady && <p className="liveReadyText">Psst...we're live rn ^^^</p>} */}
       <Box component="section">
         <p className="disclaimer">
           Mutliple Expressions does not own or claim to own any of the music
