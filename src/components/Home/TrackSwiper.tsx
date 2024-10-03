@@ -8,11 +8,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-// import required modules
-import { Navigation } from "swiper/modules";
-import { Pagination } from "swiper/modules";
+// Swiper required modules
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import { TrackInt } from "../../ints/ints";
-import "./home.css";
+import "./trackSwiper.css";
 
 interface SwiperProps {
   featuredTracks: TrackInt[];
@@ -23,9 +22,14 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
   return (
     <Box component="section" className="swiperMainContainer">
       <Swiper
-        navigation={true}
-        pagination={true}
-        modules={[Navigation, Pagination]}
+        // navigation={true}
+        // pagination={true}
+        loop={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay]}
       >
         {featuredTracks.map((track, index) => (
           <SwiperSlide key={index}>
