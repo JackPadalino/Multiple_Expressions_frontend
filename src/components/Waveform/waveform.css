@@ -10,6 +10,7 @@
   padding-right: 10px;
   background-color: black;
   box-sizing: border-box;
+  z-index: 3;
 }
 
 .waveformMain > :nth-child(1) {
