@@ -98,8 +98,7 @@ const Home = () => {
       <Box component="section" className="homeIntroDiv">
         <h1 className="homeTitle">Multiple Expressions</h1>
         <p className="homeDesc">
-          Showcasing the wealth of lesser-known talent of the NYC electronic
-          music scene
+          Come as you are. Play as you are. Express yourself.
         </p>
       </Box>
       <Box component="section" className="homeInvitationDiv">

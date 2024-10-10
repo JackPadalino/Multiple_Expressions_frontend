@@ -57,6 +57,7 @@ const TrackSwiper = ({ featuredTracks, handlePlay }: SwiperProps) => {
                     fontSize="medium"
                     sx={{
                       color: "orange",
+                      fontSize: "35px",
                     }}
                   />
                 </IconButton>

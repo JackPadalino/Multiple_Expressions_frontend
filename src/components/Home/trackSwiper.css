@@ -1,8 +1,4 @@
 @media only screen and (max-width: 600px) {
-  .swiperMainContainer {
-    height: 100vh;
-  }
-
   .swiper-button-next::after {
     display: none;
   }
@@ -13,10 +9,6 @@
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  .swiperMainContainer {
-    height: 100vh;
-  }
-
   .swiper-button-next::after {
     display: none;
   }
@@ -27,14 +19,6 @@
 }
 
 @media only screen and (min-width: 1280px) {
-  .swiperMainContainer {
-    height: 100vh;
-  }
-
-  .swiperTrackTitle {
-    font-size: 30px;
-  }
-
   .swiper-button-next::after {
     color: rgb(234, 162, 42);
   }
@@ -48,6 +32,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  height: calc(100vh - 45px);
 }
 
 .swiperTrackImg {
@@ -86,7 +71,7 @@
   z-index: 2;
   /* background-color: rgba(0, 0, 0, 0.5); */
   padding: 10px;
-  padding-bottom: 75px;
+  /* padding-bottom: 50px; */
   width: 100%;
   bottom: 0;
 }
@@ -97,6 +82,7 @@
 }
 
 .swiperTrackTitle {
+  font-size: 30px;
   font-family: Coolvetica;
 }
 
@@ -113,6 +99,10 @@
   cursor: pointer;
   text-decoration: none;
   color: rgb(234, 162, 42);
+}
+
+.swiperArtistLink:hover {
+  text-decoration: underline;
 }
 
 .swiperTagsDiv {
