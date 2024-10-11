@@ -6,6 +6,11 @@
   .swiper-button-prev::after {
     display: none;
   }
+
+  .swiperTrackInfo {
+    padding-left: 10px;
+    padding-bottom: 80px;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
@@ -16,6 +21,10 @@
   .swiper-button-prev::after {
     display: none;
   }
+
+  .swiperTrackInfo {
+    padding: 10px;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -25,6 +34,10 @@
 
   .swiper-button-prev::after {
     color: rgb(234, 162, 42);
+  }
+
+  .swiperTrackInfo {
+    padding: 10px;
   }
 }
 
@@ -70,8 +83,6 @@
   position: fixed;
   z-index: 2;
   /* background-color: rgba(0, 0, 0, 0.5); */
-  padding: 10px;
-  padding-bottom: 50px;
   width: 100%;
   bottom: 0;
 }

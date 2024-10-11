@@ -77,8 +77,8 @@
 .auditoryMainContainer {
   display: flex;
   flex-direction: column;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
   /* adding margin top to all components */
   margin-top: 20px;
   /* adding padding to all componets to account for pop up player div */

@@ -16,11 +16,11 @@ const Nav = () => {
             Auditory
           </NavLink>
         </li>
-        <li className="navItem">
+        {/* <li className="navItem">
           <NavLink to="" className="navLink">
             Events
           </NavLink>
-        </li>
+        </li> */}
         <li className="navItem">
           <NavLink to="/live" className="navLink">
             Live
