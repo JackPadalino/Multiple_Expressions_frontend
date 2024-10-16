@@ -48,6 +48,7 @@
 
 .trackTitlePlayDiv {
   display: flex;
+  align-items: center;
 }
 
 .playButton {

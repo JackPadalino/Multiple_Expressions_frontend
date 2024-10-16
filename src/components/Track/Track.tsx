@@ -64,7 +64,7 @@ const Track = () => {
       <Box component="section" className="trackTrackInfo">
         <Box className="trackTitlePlayDiv">
           <h2 className="trackTitle">{track.title}</h2>
-          <IconButton
+          {/* <IconButton
             role="button"
             onClick={() => handlePlay(track)}
             className="playButton"
@@ -75,7 +75,7 @@ const Track = () => {
                 color: "orange",
               }}
             />
-          </IconButton>
+          </IconButton> */}
         </Box>
         <Box className="trackArtists">
           {track.artists.map((artist: ArtistInt) => (
